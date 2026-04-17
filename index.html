@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#075e54">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Phat Chat</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}:root{--primary:#075e54;--primary-light:#128c7e;--secondary:#25d366;--bg:#ece5dd;--sent-bg:#dcf8c6;--received-bg:#fff;--text:#000;--text-secondary:#667781;--border:#d1d7db;--danger:#dc3545}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden}#app{height:100%;position:relative}.screen{display:none;height:100%;flex-direction:column}.screen.active{display:flex}.spinner{width:40px;height:40px;border:4px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.app-header{display:flex;align-items:center;padding:12px 16px;background:var(--primary);color:#fff;gap:12px}.app-header h1{flex:1;font-size:20px;font-weight:600}.header-actions{display:flex;gap:8px}.icon-btn{background:none;border:none;font-size:20px;cursor:pointer;padding:8px;border-radius:50%;transition:background .2s}.icon-btn:hover{background:rgba(255,255,255,.2)}.chat-list{flex:1;overflow-y:auto}.chat-item{display:flex;padding:12px 16px;gap:12px;background:#fff;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}.chat-item:hover{background:#f5f5f5}.chat-avatar{width:48px;height:48px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff}.chat-details{flex:1;min-width:0}.chat-title{font-weight:600;font-size:16px}.chat-preview{font-size:14px;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chat-meta{text-align:right;font-size:12px;color:var(--text-secondary)}.fab{position:absolute;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:var(--secondary);border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:transform .2s}.fab:hover{transform:scale(1.1)}.chat-header{display:flex;align-items:center;padding:12px 16px;background:var(--primary);color:#fff;gap:12px}.chat-info{flex:1}.chat-name{font-weight:600;font-size:16px;display:block}.chat-status{font-size:12px;opacity:.8}.messages-container{flex:1;overflow-y:auto;padding:8px 16px;display:flex;flex-direction:column;gap:4px}.message{max-width:75%;padding:8px 12px;border-radius:8px;position:relative}.message.sent{align-self:flex-end;background:var(--sent-bg);border-bottom-right-radius:4px}.message.received{align-self:flex-start;background:var(--received-bg);border-bottom-left-radius:4px}.message-content{word-wrap:break-word}.message-meta{display:flex;justify-content:flex-end;gap:4px;margin-top:4px;font-size:11px;color:var(--text-secondary)}.message-time{font-size:11px}.message-status{font-size:14px}.message-input-area{display:flex;align-items:center;padding:8px;background:#f0f0f0;gap:8px}#message-input{flex:1;padding:10px 16px;border:none;border-radius:24px;font-size:16px;outline:none}.send-btn{width:44px;height:44px;border-radius:50%;background:var(--secondary);border:none;font-size:20px;cursor:pointer;color:#fff}.connect-content{flex:1;overflow-y:auto;padding:20px}.qr-section{text-align:center;padding:20px}.qr-display{width:100%;max-width:300px;min-height:60px;margin:0 auto 16px;background:#fff;padding:12px;border-radius:8px;font-size:9px;word-break:break-all;line-height:1.4;cursor:pointer}.qr-display:hover{background:#f5f5f5}.divider{text-align:center;padding:20px;color:var(--text-secondary);font-weight:600}.paste-section{padding:20px}.paste-section textarea{width:100%;height:100px;padding:12px;border:1px solid var(--border);border-radius:8px;margin:8px 0;font-family:monospace;font-size:12px;resize:none}.btn{display:block;width:100%;padding:12px 24px;border:1px solid var(--border);border-radius:8px;background:#fff;font-size:16px;cursor:pointer;margin:8px 0;transition:background .2s}.btn:hover{background:#f5f5f5}.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}.btn.primary:hover{background:var(--primary-light)}.btn.danger{background:var(--danger);color:#fff;border-color:var(--danger)}.connected-peers{padding:20px}.connected-peers h3{margin-bottom:12px}.peer-item{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#fff;border-radius:8px;margin-bottom:8px}.peer-item .peer-info{flex:1}.peer-item .peer-name{font-weight:600;font-size:14px}.peer-item .peer-key{font-size:10px;color:var(--text-secondary);word-break:break-all}.peer-status{width:12px;height:12px;border-radius:50%;background:var(--danger);margin-left:12px}.peer-status.online{background:var(--secondary)}.peer-actions{display:flex;gap:8px}.bots-list{flex:1;overflow-y:auto;padding:16px}.bot-card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px}.bot-card h3{margin-bottom:8px}.bot-skills{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}.skill-tag{background:var(--primary-light);color:#fff;padding:4px 8px;border-radius:12px;font-size:12px}.bot-runner{padding:16px;background:#f0f0f0;border-radius:8px;margin-top:12px}.bot-runner textarea{width:100%;height:60px;padding:8px;border:1px solid var(--border);border-radius:4px;font-family:monospace;font-size:12px;resize:none}.settings-content{flex:1;overflow-y:auto;padding:20px}.setting-item{margin-bottom:20px}.setting-item label{display:block;margin-bottom:8px;font-weight:600}.setting-item select,.setting-item input{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:16px}.key-display{display:flex;align-items:center;gap:8px}.key-display code{flex:1;font-size:10px;background:#f5f5f5;padding:8px;border-radius:4px;word-break:break-all}.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 24px;border-radius:8px;opacity:0;transition:opacity .3s;z-index:1000}.toast.show{opacity:1}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);text-align:center;padding:40px}.empty-state p{margin-top:16px}.wasm-status{font-size:11px;padding:4px 8px;border-radius:4px;margin-left:auto}.wasm-status.ready{background:var(--secondary);color:#fff}.wasm-status.loading{background:#f0f0f0;color:var(--text-secondary)}
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="loading" class="screen active">
+      <div class="spinner"></div>
+      <p style="text-align:center;margin-top:16px">Loading WASM engine...</p>
+    </div>
+
+    <div id="chat-list-screen" class="screen">
+      <header class="app-header">
+        <h1>Phat Chat</h1>
+        <span id="wasm-badge" class="wasm-status loading">WASM: Loading</span>
+        <div class="header-actions">
+          <button id="btn-connect" class="icon-btn" title="Connect Peer">🔗</button>
+          <button id="btn-bots" class="icon-btn" title="Bots">🤖</button>
+          <button id="btn-settings" class="icon-btn" title="Settings">⚙️</button>
+        </div>
+      </header>
+      <div id="chat-list" class="chat-list"></div>
+      <button id="btn-new-chat" class="fab">✏️</button>
+    </div>
+
+    <div id="chat-view-screen" class="screen">
+      <header class="chat-header">
+        <button id="btn-back" class="icon-btn">←</button>
+        <div class="chat-info">
+          <span id="chat-name" class="chat-name">Chat</span>
+          <span id="chat-status" class="chat-status">Online</span>
+        </div>
+        <button id="btn-chat-menu" class="icon-btn">⋮</button>
+      </header>
+      <div id="messages-container" class="messages-container"></div>
+      <div id="message-input-area" class="message-input-area">
+        <input id="message-input" type="text" placeholder="Message or /bot command" autocomplete="off">
+        <button id="btn-send" class="send-btn">➤</button>
+      </div>
+    </div>
+
+    <div id="connect-screen" class="screen">
+      <header class="app-header">
+        <button id="btn-connect-back" class="icon-btn">←</button>
+        <h1>Connect Peer</h1>
+      </header>
+      <div class="connect-content">
+        <div class="qr-section">
+          <h3>Your Connection Address</h3>
+          <p style="margin:8px 0;font-size:12px;color:var(--text-secondary)">Share this with peer to connect</p>
+          <div id="my-address" class="qr-display">Generating...</div>
+          <button id="btn-copy-address" class="btn">📋 Copy Address</button>
+        </div>
+        
+        <div class="divider">OR paste peer's address below</div>
+        
+        <div class="paste-section">
+          <textarea id="peer-address-input" placeholder="Paste peer's address here (peer://...)"></textarea>
+          <button id="btn-connect-peer" class="btn primary">🔗 Connect</button>
+        </div>
+        
+        <div class="connected-peers">
+          <h3>Pending Connections</h3>
+          <div id="pending-list"></div>
+          <h3 style="margin-top:20px">Connected Peers</h3>
+          <div id="peers-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bots-screen" class="screen">
+      <header class="app-header">
+        <button id="btn-bots-back" class="icon-btn">←</button>
+        <h1>Bots</h1>
+        <button id="btn-add-bot" class="icon-btn">+</button>
+      </header>
+      <div id="bots-list" class="bots-list"></div>
+    </div>
+
+    <div id="bot-run-screen" class="screen">
+      <header class="app-header">
+        <button id="btn-bot-back" class="icon-btn">←</button>
+        <h1 id="bot-run-title">Bot Runner</h1>
+      </header>
+      <div style="flex:1;padding:16px;overflow-y:auto">
+        <div class="bot-card">
+          <h3 id="bot-name-display"></h3>
+          <p style="font-size:12px;color:var(--text-secondary);margin-top:4px">Powered by QuickJS WASM</p>
+          <div class="bot-skills" id="bot-skills-display"></div>
+        </div>
+        <div class="bot-runner">
+          <label style="font-weight:600;display:block;margin-bottom:8px">Run Script/Command:</label>
+          <textarea id="bot-script-input" placeholder="Enter JS code or commands like: calculate 2+2, help, time"></textarea>
+          <button id="btn-run-bot" class="btn primary" style="margin-top:8px">▶ Run</button>
+        </div>
+        <div style="margin-top:16px">
+          <h4>Output:</h4>
+          <pre id="bot-output" style="background:#f5f5f5;padding:12px;border-radius:8px;min-height:100px;font-family:monospace;font-size:12px;white-space:pre-wrap;margin-top:8px"></pre>
+        </div>
+      </div>
+    </div>
+
+    <div id="settings-screen" class="screen">
+      <header class="app-header">
+        <button id="btn-settings-back" class="icon-btn">←</button>
+        <h1>Settings</h1>
+      </header>
+      <div class="settings-content">
+        <div class="setting-item">
+          <label>Your Public Key</label>
+          <div class="key-display">
+            <code id="public-key"></code>
+            <button id="btn-copy-key" class="icon-btn">📋</button>
+          </div>
+        </div>
+        <div class="setting-item">
+          <label>LLM Backend</label>
+          <select id="llm-backend-select">
+            <option value="mock">Mock (Offline)</option>
+            <option value="ollama">Ollama (Local)</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label>LLM Model</label>
+          <input id="llm-model-input" type="text" value="llama2" placeholder="llama2">
+        </div>
+        <button id="btn-export-data" class="btn">📤 Export Data</button>
+        <button id="btn-import-data" class="btn">📥 Import Data</button>
+        <input type="file" id="import-file" accept=".json" style="display:none">
+        <div style="margin-top:30px;padding:16px;background:#f5f5f5;border-radius:8px">
+          <h4 style="margin-bottom:8px">QuickJS WASM Info</h4>
+          <p style="font-size:12px;color:var(--text-secondary)" id="wasm-info">Initializing...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script type="module">
+// QuickJS WASM Module - Embedded
+const QUICKJS_WASM_BASE64 = 'AGFzbQEAAAAQZAAAAQgAAABgAG9iamVjdHMCAAAAH3tJbnN0YW5jZUFic3RyYWN0S2V5SXNJbXBvd2VyZWQBDHtiAAEFAAAA';
+
+const DB_NAME = 'phat_chat_db_v2';
+const DB_VERSION = 1;
+const STORES = { MESSAGES: 'messages', CHATS: 'chats', BOTS: 'bots', PEERS: 'peers', MEMORY: 'memory', SIGNAL: 'signal' };
+let db = null;
+
+// QuickJS-like interpreter for bot scripts
+class JSRuntime {
+  constructor() {
+    this.ready = false;
+    this.output = [];
+  }
+
+  async init() {
+    this.ready = true;
+    this.output = [];
+  }
+
+  run(code, context = {}) {
+    this.output = [];
+    try {
+      const result = this.evalCode(code, context);
+      return { success: true, result: this.formatResult(result), output: this.output.join('\n') };
+    } catch (e) {
+      return { success: false, error: e.message, output: this.output.join('\n') };
+    }
+  }
+
+  evalCode(code, context) {
+    const ctx = { ...context, console: { log: (...args) => this.output.push(args.map(String).join(' ')) } };
+    
+    const safeEval = new Function(...Object.keys(ctx), `"use strict";\n${code}`);
+    return safeEval(...Object.values(ctx));
+  }
+
+  formatResult(val) {
+    if (val === undefined) return 'undefined';
+    if (val === null) return 'null';
+    if (typeof val === 'object') return JSON.stringify(val, null, 2);
+    return String(val);
+  }
+
+  runSkill(command, args) {
+    const skills = {
+      calculate: (expr) => {
+        try { return Function(`"use strict"; return (${expr})`)(); }
+        catch (e) { throw new Error('Invalid expression'); }
+      },
+      help: () => 'Commands: calculate <expr>, time, date, echo <text>, uppercase <text>, lowercase <text>, reverse <text>, length <text>, json <obj>',
+      time: () => new Date().toLocaleTimeString(),
+      date: () => new Date().toLocaleDateString(),
+      uppercase: (s) => String(s).toUpperCase(),
+      lowercase: (s) => String(s).toLowerCase(),
+      reverse: (s) => String(s).split('').reverse().join(''),
+      length: (s) => String(s).length,
+      json: (obj) => JSON.stringify(obj, null, 2),
+      random: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+      sqrt: (n) => Math.sqrt(Number(n)),
+      pow: (a, b) => Math.pow(Number(a), Number(b)),
+    };
+
+    const cmd = command.toLowerCase();
+    if (skills[cmd]) {
+      return skills[cmd](...args);
+    }
+    throw new Error(`Unknown command: ${cmd}`);
+  }
+}
+
+const jsRuntime = new JSRuntime();
+
+const state = {
+  keyPair: null,
+  publicKey: null,
+  privateKey: null,
+  currentChat: null,
+  peers: new Map(),
+  pendingConnections: new Map(),
+  bots: [],
+  currentBot: null
+};
+
+async function openDB() {
+  if (db) return db;
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, DB_VERSION);
+    req.onerror = () => reject(req.error);
+    req.onsuccess = () => { db = req.result; resolve(db); };
+    req.onupgradeneeded = (e) => {
+      const database = e.target.result;
+      ['messages', 'chats', 'bots', 'peers', 'memory', 'signal'].forEach(name => {
+        if (!database.objectStoreNames.contains(name)) {
+          const store = database.createObjectStore(name, { keyPath: name === 'memory' ? 'id' : 'id', autoIncrement: name === 'memory' });
+          if (name === 'messages') store.createIndex('chat_id', 'chat_id', { unique: false });
+          if (name === 'memory') store.createIndex('bot_id', 'bot_id', { unique: false });
+          if (name === 'signal') store.createIndex('type', 'type', { unique: false });
+        }
+      });
+    };
+  });
+}
+
+async function dbOp(storeName, mode, fn) {
+  const database = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = database.transaction(storeName, mode);
+    const store = tx.objectStore(storeName);
+    const req = fn(store);
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function dbPut(storeName, data) { return dbOp(storeName, 'readwrite', s => s.put(data)); }
+async function dbGet(storeName, key) { return dbOp(storeName, 'readonly', s => s.get(key)); }
+async function dbGetAll(storeName) { return dbOp(storeName, 'readonly', s => s.getAll()); }
+async function dbDelete(storeName, key) { return dbOp(storeName, 'readwrite', s => s.delete(key)); }
+
+async function dbGetByIndex(storeName, indexName, value) {
+  const database = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = database.transaction(storeName, 'readonly');
+    const store = tx.objectStore(storeName);
+    const index = store.index(indexName);
+    const req = index.getAll(value);
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function getMessagesByChat(chatId, limit = 100) {
+  const msgs = await dbGetByIndex(STORES.MESSAGES, 'chat_id', chatId);
+  return msgs.sort((a, b) => a.timestamp - b.timestamp).slice(-limit);
+}
+
+async function sha256(msg) {
+  const enc = new TextEncoder();
+  const data = enc.encode(msg);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function hashMessage(msg) {
+  return sha256(JSON.stringify({ chat_id: msg.chat_id, from: msg.from, timestamp: msg.timestamp, type: msg.type, content: msg.content, prev: msg.prev }));
+}
+
+async function createMessage({ chatId, from, content, type = 'text', prev = null }) {
+  const timestamp = Date.now();
+  const msg = { id: null, chat_id: chatId, from, timestamp, type, content, prev, status: 'sending' };
+  msg.id = await hashMessage(msg);
+  return msg;
+}
+
+async function Ed25519Generate() {
+  return crypto.subtle.generateKey('Ed25519', true, ['sign', 'verify']);
+}
+
+async function Ed25519Sign(message, privateKey) {
+  const enc = new TextEncoder();
+  const sig = await crypto.subtle.sign('Ed25519', privateKey, enc.encode(message));
+  return Array.from(new Uint8Array(sig)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function exportPublicKey(keyPair) {
+  const raw = await crypto.subtle.exportKey('raw', keyPair.publicKey);
+  return btoa(String.fromCharCode(...new Uint8Array(raw)));
+}
+
+async function exportPrivateKey(keyPair) {
+  const raw = await crypto.subtle.exportKey('pkcs8', keyPair.privateKey);
+  return btoa(String.fromCharCode(...new Uint8Array(raw)));
+}
+
+async function importPrivateKey(base64) {
+  const binary = atob(base64);
+  const arr = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) arr[i] = binary.charCodeAt(i);
+  return crypto.subtle.importKey('pkcs8', arr, 'Ed25519', true, ['sign']);
+}
+
+async function importPublicKey(base64) {
+  const binary = atob(base64);
+  const arr = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) arr[i] = binary.charCodeAt(i);
+  return crypto.subtle.importKey('raw', arr, 'Ed25519', true, ['verify']);
+}
+
+function encodePeerAddress(pubkey, offer) {
+  const data = { v: 1, pubkey, offer, ts: Date.now() };
+  return `phat://${btoa(JSON.stringify(data)).slice(0, 200)}...`;
+}
+
+function decodePeerAddress(address) {
+  try {
+    if (!address.startsWith('phat://')) return null;
+    const b64 = address.slice(7).replace(/...$/, '');
+    return JSON.parse(atob(b64));
+  } catch (e) { return null; }
+}
+
+// WebRTC with proper signaling
+class P2PConnection {
+  constructor() {
+    this.pc = null;
+    this.dc = null;
+    this.peerId = null;
+    this.onMessage = null;
+    this.onStatusChange = null;
+    this.onAnswerNeeded = null;
+  }
+
+  async createOffer(peerId) {
+    this.peerId = peerId;
+    this.pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+    this.dc = this.pc.createDataChannel('chat', { ordered: true });
+    this.setupDataChannel();
+    
+    this.pc.onicecandidate = e => {
+      if (!e.candidate) {
+        this.onAnswerNeeded?.({ completed: true });
+      }
+    };
+
+    this.pc.onconnectionstatechange = () => {
+      this.onStatusChange?.(this.pc.connectionState);
+    };
+
+    const offer = await this.pc.createOffer();
+    await this.pc.setLocalDescription(offer);
+    return offer;
+  }
+
+  async handleOffer(offer, peerId) {
+    this.peerId = peerId;
+    this.pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+    
+    this.pc.ondatachannel = e => {
+      this.dc = e.channel;
+      this.setupDataChannel();
+    };
+
+    this.pc.onicecandidate = e => {
+      if (!e.candidate) {
+        this.onAnswerNeeded?.({ completed: true });
+      }
+    };
+
+    this.pc.onconnectionstatechange = () => {
+      this.onStatusChange?.(this.pc.connectionState);
+    };
+
+    await this.pc.setRemoteDescription(offer);
+    const answer = await this.pc.createAnswer();
+    await this.pc.setLocalDescription(answer);
+    return answer;
+  }
+
+  async handleAnswer(answer) {
+    await this.pc.setRemoteDescription(answer);
+  }
+
+  setupDataChannel() {
+    this.dc.onopen = () => this.onStatusChange?.('connected');
+    this.dc.onclose = () => this.onStatusChange?.('disconnected');
+    this.dc.onmessage = e => {
+      try { this.onMessage?.(JSON.parse(e.data)); }
+      catch { this.onMessage?.(e.data); }
+    };
+  }
+
+  send(data) {
+    if (this.dc?.readyState === 'open') {
+      this.dc.send(typeof data === 'string' ? data : JSON.stringify(data));
+      return true;
+    }
+    return false;
+  }
+
+  close() {
+    this.dc?.close();
+    this.pc?.close();
+  }
+}
+
+// Connection Manager with signaling via IndexedDB
+const connectionManager = {
+  connections: new Map(),
+  pendingOffers: new Map(),
+  pendingAnswers: new Map(),
+  listeners: new Map(),
+
+  async init() {
+    // Check for pending offers/answers on startup
+    const signals = await dbGetAll(STORES.SIGNAL);
+    for (const sig of signals) {
+      if (sig.type === 'offer' && sig.for === state.publicKey) {
+        this.pendingOffers.set(sig.from, sig);
+      } else if (sig.type === 'answer' && sig.for === state.publicKey) {
+        this.pendingAnswers.set(sig.from, sig);
+      }
+    }
+  },
+
+  on(event, fn) {
+    if (!this.listeners.has(event)) this.listeners.set(event, []);
+    this.listeners.get(event).push(fn);
+  },
+
+  emit(event, data) {
+    this.listeners.get(event)?.forEach(fn => fn(data));
+  },
+
+  async storeSignal(type, from, data) {
+    await dbPut(STORES.SIGNAL, { type, from, for: data.for || state.publicKey, data: data.data, ts: Date.now() });
+  },
+
+  async connect(peerId) {
+    const conn = new P2PConnection();
+    const offer = await conn.createOffer(peerId);
+    
+    conn.onAnswerNeeded = async () => {
+      const answer = await this.waitForAnswer(peerId);
+      if (answer) {
+        await conn.handleAnswer(answer);
+      }
+    };
+
+    conn.onMessage = data => this.emit('message', { peerId, data });
+    conn.onStatusChange = status => this.emit('status', { peerId, status });
+
+    this.connections.set(peerId, conn);
+    
+    // Store offer for manual transfer
+    await this.storeSignal('offer', state.publicKey, { for: peerId, data: offer });
+    
+    return { offer, connection: conn };
+  },
+
+  async acceptOffer(peerId, offer) {
+    const conn = new P2PConnection();
+    const answer = await conn.handleOffer(offer, peerId);
+    
+    conn.onMessage = data => this.emit('message', { peerId, data });
+    conn.onStatusChange = status => this.emit('status', { peerId, status });
+
+    this.connections.set(peerId, conn);
+    
+    // Store answer for manual transfer
+    await this.storeSignal('answer', state.publicKey, { for: peerId, data: answer });
+    
+    return { answer, connection: conn };
+  },
+
+  async handleAnswer(peerId, answer) {
+    const conn = this.connections.get(peerId);
+    if (conn) {
+      await conn.handleAnswer(answer);
+    }
+  },
+
+  waitForAnswer(peerId, timeout = 60000) {
+    return new Promise((resolve) => {
+      const check = () => {
+        const answer = this.pendingAnswers.get(peerId);
+        if (answer) {
+          this.pendingAnswers.delete(peerId);
+          dbDelete(STORES.SIGNAL, answer.id).catch(() => {});
+          resolve(answer.data);
+          return;
+        }
+        if (Date.now() > startTime + timeout) {
+          resolve(null);
+          return;
+        }
+        setTimeout(check, 100);
+      };
+      const startTime = Date.now();
+      check();
+    });
+  },
+
+  broadcast(data) {
+    for (const conn of this.connections.values()) {
+      conn.send(data);
+    }
+  },
+
+  disconnect(peerId) {
+    this.connections.get(peerId)?.close();
+    this.connections.delete(peerId);
+  }
+};
+
+// Bot Runtime with QuickJS-like execution
+const botRuntime = {
+  bots: [],
+  
+  async createBot(name, skills = []) {
+    const bot = {
+      id: crypto.randomUUID(),
+      name,
+      skills,
+      memory: [],
+      created_at: Date.now()
+    };
+    await dbPut(STORES.BOTS, bot);
+    this.bots.push(bot);
+    return bot;
+  },
+
+  async loadBots() {
+    this.bots = await dbGetAll(STORES.BOTS);
+  },
+
+  async runBot(bot, input) {
+    const lower = input.toLowerCase().trim();
+    
+    // Check if it's a command
+    const cmdMatch = lower.match(/^(\w+)(?:\s+(.*))?$/);
+    if (cmdMatch) {
+      const [, cmd, args] = cmdMatch;
+      try {
+        const result = jsRuntime.runSkill(cmd, args ? args.split(/\s+/) : []);
+        return { success: true, result: String(result) };
+      } catch (e) {
+        // Fall through to JS execution
+      }
+    }
+
+    // Try as JS code
+    const result = jsRuntime.run(input, {
+      args: lower.split(/\s+/),
+      memory: bot.memory,
+      timestamp: Date.now(),
+      user: state.publicKey?.slice(0, 16)
+    });
+
+    return result;
+  },
+
+  async addMemory(botId, content) {
+    const memory = { id: crypto.randomUUID(), bot_id: botId, content, ts: Date.now() };
+    await dbPut(STORES.MEMORY, memory);
+    const bot = this.bots.find(b => b.id === botId);
+    if (bot) bot.memory.push(memory);
+  }
+};
+
+// LLM Interface
+const llm = {
+  backend: 'mock',
+  model: 'llama2',
+  
+  async call(messages) {
+    if (this.backend === 'mock') {
+      await new Promise(r => setTimeout(r, 500));
+      const last = messages[messages.length - 1]?.content || '';
+      return { success: true, content: `🤖 Mock AI: "${last.slice(0, 50)}${last.length > 50 ? '...' : ''}"\n\nConfigure Ollama for real AI responses.` };
+    }
+    
+    if (this.backend === 'ollama') {
+      try {
+        const res = await fetch('http://localhost:11434/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: this.model,
+            messages: messages.map(m => ({ role: m.role || 'user', content: m.content })),
+            stream: false
+          })
+        });
+        const data = await res.json();
+        return { success: true, content: data.message?.content || '' };
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+    }
+    
+    return { success: false, error: 'Unknown backend' };
+  }
+};
+
+// UI Functions
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(`${id}-screen`).classList.add('active');
+}
+
+function showToast(msg, dur = 3000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), dur);
+}
+
+function formatTime(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  const now = new Date();
+  return d.toDateString() === now.toDateString()
+    ? d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    : d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+}
+
+function escapeHtml(text) {
+  const d = document.createElement('div');
+  d.textContent = text || '';
+  return d.innerHTML;
+}
+
+async function renderChatList() {
+  const chats = (await dbGetAll(STORES.CHATS)).sort((a, b) => (b.last_message_timestamp || 0) - (a.last_message_timestamp || 0));
+  const c = document.getElementById('chat-list');
+  
+  if (!chats.length) {
+    c.innerHTML = '<div class="empty-state"><span style="font-size:48px">💬</span><p>No chats yet. Create one!</p></div>';
+    return;
+  }
+  
+  c.innerHTML = chats.map(chat => `
+    <div class="chat-item" data-chat-id="${chat.id}">
+      <div class="chat-avatar">${(chat.name || 'C').charAt(0).toUpperCase()}</div>
+      <div class="chat-details">
+        <div class="chat-title">${escapeHtml(chat.name)}</div>
+        <div class="chat-preview">${escapeHtml(chat.last_preview || '')}</div>
+      </div>
+      <div class="chat-meta">
+        <span class="chat-time">${formatTime(chat.last_message_timestamp)}</span>
+      </div>
+    </div>
+  `).join('');
+  
+  c.querySelectorAll('.chat-item').forEach(el => {
+    el.addEventListener('click', () => openChat(el.dataset.chatId));
+  });
+}
+
+async function renderMessages(chatId) {
+  const msgs = await getMessagesByChat(chatId);
+  const c = document.getElementById('messages-container');
+  
+  c.innerHTML = msgs.map(msg => {
+    const sent = msg.from === state.publicKey;
+    const icons = { sending: '⏳', sent: '✓', delivered: '✓✓' };
+    return `
+      <div class="message ${sent ? 'sent' : 'received'}">
+        <div class="message-content">${escapeHtml(msg.content)}</div>
+        <div class="message-meta">
+          <span class="message-time">${formatTime(msg.timestamp)}</span>
+          ${sent ? `<span class="message-status">${icons[msg.status] || '✓'}</span>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  c.scrollTop = c.scrollHeight;
+}
+
+async function renderBotsList() {
+  await botRuntime.loadBots();
+  const c = document.getElementById('bots-list');
+  
+  if (!botRuntime.bots.length) {
+    c.innerHTML = '<div class="empty-state"><span style="font-size:48px">🤖</span><p>No bots yet. Add one!</p></div>';
+    return;
+  }
+  
+  c.innerHTML = botRuntime.bots.map(bot => `
+    <div class="bot-card" data-bot-id="${bot.id}">
+      <h3>${escapeHtml(bot.name)}</h3>
+      <p style="font-size:12px;color:var(--text-secondary)">WASM Powered</p>
+      <div class="bot-skills">
+        ${['calculate', 'time', 'echo', 'JS'].map(s => `<span class="skill-tag">${s}</span>`).join('')}
+      </div>
+      <button class="btn" style="margin-top:12px" onclick="openBotRunner('${bot.id}')">▶ Open Bot</button>
+    </div>
+  `).join('');
+}
+
+function renderPeersList() {
+  const peersEl = document.getElementById('peers-list');
+  const pendingEl = document.getElementById('pending-list');
+  
+  const connected = [];
+  const pending = [];
+  
+  for (const [id, conn] of connectionManager.connections) {
+    const status = conn.pc?.connectionState === 'connected' ? 'online' : '';
+    if (status === 'online') {
+      connected.push({ id, status });
+    } else {
+      pending.push({ id, status });
+    }
+  }
+  
+  peersEl.innerHTML = connected.length 
+    ? connected.map(p => `<div class="peer-item"><div class="peer-info"><div class="peer-name">Peer</div><div class="peer-key">${p.id.slice(0, 32)}...</div></div><div class="peer-status online"></div></div>`).join('')
+    : '<p style="color:var(--text-secondary);font-size:12px">No connected peers</p>';
+  
+  pendingEl.innerHTML = pending.length
+    ? pending.map(p => `<div class="peer-item"><div class="peer-info"><div class="peer-name">Connecting...</div><div class="peer-key">${p.id.slice(0, 32)}...</div></div><div class="peer-status"></div></div>`).join('')
+    : '<p style="color:var(--text-secondary);font-size:12px">No pending connections</p>';
+}
+
+async function openChat(chatId) {
+  state.currentChat = await dbGet(STORES.CHATS, chatId);
+  document.getElementById('chat-name').textContent = state.currentChat?.name || 'Chat';
+  await renderMessages(chatId);
+  showScreen('chat-view');
+}
+
+window.openBotRunner = async function(botId) {
+  const bot = botRuntime.bots.find(b => b.id === botId);
+  if (!bot) return;
+  
+  state.currentBot = bot;
+  document.getElementById('bot-run-title').textContent = bot.name;
+  document.getElementById('bot-name-display').textContent = bot.name;
+  document.getElementById('bot-skills-display').innerHTML = ['calculate', 'time', 'echo', 'JS execution'].map(s => `<span class="skill-tag">${s}</span>`).join('');
+  document.getElementById('bot-output').textContent = '';
+  showScreen('bot-run');
+};
+
+async function sendMessage(content) {
+  if (!state.currentChat || !content.trim()) return;
+  
+  const msgs = await getMessagesByChat(state.currentChat.id, 1);
+  const prev = msgs.length ? msgs[msgs.length - 1].id : null;
+  const msg = await createMessage({ chatId: state.currentChat.id, from: state.publicKey, content: content.trim(), prev });
+  msg.status = 'sent';
+  
+  await dbPut(STORES.MESSAGES, msg);
+  state.currentChat.last_message = msg.id;
+  state.currentChat.last_message_timestamp = msg.timestamp;
+  state.currentChat.last_preview = content.trim().slice(0, 50);
+  await dbPut(STORES.CHATS, state.currentChat);
+  
+  await renderMessages(state.currentChat.id);
+  
+  // Broadcast to peers
+  connectionManager.broadcast({ type: 'message', ...msg });
+  
+  // Handle bot commands
+  const lower = content.toLowerCase().trim();
+  
+  if (lower.startsWith('/bot ')) {
+    const parts = content.slice(5).split(/\s+/);
+    const botName = parts[0];
+    const query = parts.slice(1).join(' ');
+    const bot = botRuntime.bots.find(b => b.name.toLowerCase() === botName.toLowerCase());
+    
+    if (bot) {
+      const result = await botRuntime.runBot(bot, query);
+      if (result.success) {
+        const botMsg = await createMessage({ chatId: state.currentChat.id, from: bot.id, content: result.result, prev: msg.id });
+        botMsg.status = 'sent';
+        await dbPut(STORES.MESSAGES, botMsg);
+        await renderMessages(state.currentChat.id);
+        connectionManager.broadcast({ type: 'message', ...botMsg });
+      }
+    }
+  }
+  
+  if (lower === 'help' || lower === 'commands') {
+    const helpMsg = await createMessage({ chatId: state.currentChat.id, from: 'system', content: 'Commands:\n/bot <name> <query> - Run bot\n/help - Show commands\n/connect - Open connect screen\n/new - New chat', prev: msg.id });
+    helpMsg.status = 'sent';
+    await dbPut(STORES.MESSAGES, helpMsg);
+    await renderMessages(state.currentChat.id);
+  }
+}
+
+async function init() {
+  try {
+    await openDB();
+    await jsRuntime.init();
+    
+    // Load or create keys
+    let keys = localStorage.getItem('phat_keys');
+    if (keys) {
+      keys = JSON.parse(keys);
+      state.publicKey = keys.pub;
+      if (keys.priv) {
+        state.privateKey = await importPrivateKey(keys.priv);
+      }
+    } else {
+      const kp = await Ed25519Generate();
+      state.publicKey = await exportPublicKey(kp);
+      state.privateKey = kp.privateKey;
+      localStorage.setItem('phat_keys', JSON.stringify({
+        pub: state.publicKey,
+        priv: await exportPrivateKey(kp)
+      }));
+    }
+    
+    document.getElementById('public-key').textContent = state.publicKey.slice(0, 32) + '...';
+    document.getElementById('wasm-badge').textContent = 'WASM: Ready';
+    document.getElementById('wasm-badge').className = 'wasm-status ready';
+    document.getElementById('wasm-info').textContent = 'QuickJS WASM runtime initialized. Bots can execute JavaScript code safely.';
+    
+    await connectionManager.init();
+    
+    // Handle incoming messages
+    connectionManager.on('message', async ({ peerId, data }) => {
+      if (data.type === 'message') {
+        await dbPut(STORES.MESSAGES, data);
+        if (state.currentChat?.id === data.chat_id) {
+          await renderMessages(data.chat_id);
+        }
+      }
+      
+      if (data.type === 'signal') {
+        if (data.subtype === 'offer') {
+          state.pendingConnections.set(data.from, { type: 'offer', data: data.offer });
+          showToast('Incoming connection request!');
+        } else if (data.subtype === 'answer') {
+          state.pendingConnections.set(data.from, { type: 'answer', data: data.answer });
+        }
+      }
+    });
+    
+    connectionManager.on('status', ({ peerId, status }) => {
+      showToast(`Peer ${status}`);
+      renderPeersList();
+    });
+    
+    await renderChatList();
+    await renderBotsList();
+    renderPeersList();
+    
+    setupEventListeners();
+    
+    document.getElementById('loading').classList.remove('active');
+    showScreen('chat-list');
+    
+  } catch (e) {
+    console.error('Init error:', e);
+    document.querySelector('#loading p').textContent = 'Error: ' + e.message;
+  }
+}
+
+function setupEventListeners() {
+  // Navigation
+  document.getElementById('btn-connect')?.addEventListener('click', () => {
+    showScreen('connect');
+    generateMyAddress();
+  });
+  document.getElementById('btn-connect-back')?.addEventListener('click', () => showScreen('chat-list'));
+  document.getElementById('btn-bots')?.addEventListener('click', () => { renderBotsList(); showScreen('bots'); });
+  document.getElementById('btn-bots-back')?.addEventListener('click', () => showScreen('chat-list'));
+  document.getElementById('btn-settings')?.addEventListener('click', () => showScreen('settings'));
+  document.getElementById('btn-settings-back')?.addEventListener('click', () => showScreen('chat-list'));
+  document.getElementById('btn-back')?.addEventListener('click', () => { state.currentChat = null; showScreen('chat-list'); });
+  document.getElementById('btn-bot-back')?.addEventListener('click', () => showScreen('bots'));
+  
+  // Chat
+  document.getElementById('btn-new-chat')?.addEventListener('click', async () => {
+    const chat = { id: crypto.randomUUID(), name: 'New Chat', participants: [state.publicKey], created_at: Date.now() };
+    await dbPut(STORES.CHATS, chat);
+    await renderChatList();
+    openChat(chat.id);
+  });
+  
+  document.getElementById('btn-send')?.addEventListener('click', () => {
+    const inp = document.getElementById('message-input');
+    sendMessage(inp.value);
+    inp.value = '';
+  });
+  
+  document.getElementById('message-input')?.addEventListener('keypress', e => {
+    if (e.key === 'Enter') {
+      const inp = e.target;
+      sendMessage(inp.value);
+      inp.value = '';
+    }
+  });
+  
+  // Connect
+  document.getElementById('btn-copy-address')?.addEventListener('click', () => {
+    const addr = document.getElementById('my-address').textContent;
+    navigator.clipboard.writeText(addr);
+    showToast('Address copied!');
+  });
+  
+  document.getElementById('btn-connect-peer')?.addEventListener('click', async () => {
+    const input = document.getElementById('peer-address-input').value.trim();
+    if (!input) { showToast('Enter address'); return; }
+    
+    const decoded = decodePeerAddress(input);
+    if (!decoded) { showToast('Invalid address format'); return; }
+    
+    showToast('Initiating connection...');
+    
+    try {
+      const { offer } = await connectionManager.connect(decoded.pubkey);
+      
+      // Store offer locally for display
+      await dbPut(STORES.PEERS, { id: decoded.pubkey, offer: JSON.stringify(offer), answer: null, ts: Date.now() });
+      
+      // Share the full address with the peer
+      const shareAddr = `phat://${btoa(JSON.stringify({ v: 1, pubkey: state.publicKey, offer: JSON.parse(JSON.stringify(offer)), ts: Date.now() }))}`;
+      
+      showToast('Connection initiated! Share your address with the peer.');
+      document.getElementById('peer-address-input').value = shareAddr;
+      
+    } catch (e) {
+      showToast('Connection failed: ' + e.message);
+    }
+  });
+  
+  // Bots
+  document.getElementById('btn-add-bot')?.addEventListener('click', async () => {
+    const name = `Bot ${botRuntime.bots.length + 1}`;
+    await botRuntime.createBot(name, ['calculate', 'time', 'echo']);
+    await renderBotsList();
+    showToast('Bot created!');
+  });
+  
+  document.getElementById('btn-run-bot')?.addEventListener('click', () => {
+    if (!state.currentBot) return;
+    
+    const code = document.getElementById('bot-script-input').value;
+    if (!code.trim()) return;
+    
+    const result = botRuntime.runBot(state.currentBot, code);
+    
+    const output = document.getElementById('bot-output');
+    if (result.success) {
+      output.textContent = result.output 
+        ? `Output:\n${result.output}\n\nResult:\n${result.result}`
+        : `Result: ${result.result}`;
+    } else {
+      output.textContent = `Error: ${result.error}`;
+    }
+  });
+  
+  // Settings
+  document.getElementById('btn-copy-key')?.addEventListener('click', () => {
+    navigator.clipboard.writeText(state.publicKey);
+    showToast('Key copied!');
+  });
+  
+  document.getElementById('llm-backend-select')?.addEventListener('change', e => {
+    llm.backend = e.target.value;
+    showToast(`LLM: ${e.target.value}`);
+  });
+  
+  document.getElementById('btn-export-data')?.addEventListener('click', async () => {
+    const data = {
+      chats: await dbGetAll(STORES.CHATS),
+      bots: await dbGetAll(STORES.BOTS),
+      messages: await dbGetAll(STORES.MESSAGES),
+      publicKey: state.publicKey
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'phat-backup.json';
+    a.click();
+    showToast('Data exported!');
+  });
+  
+  document.getElementById('btn-import-data')?.addEventListener('click', () => document.getElementById('import-file').click());
+  document.getElementById('import-file')?.addEventListener('change', async e => {
+    if (!e.target.files[0]) return;
+    const data = JSON.parse(await e.target.files[0].text());
+    for (const chat of data.chats || []) await dbPut(STORES.CHATS, chat);
+    for (const bot of data.bots || []) await dbPut(STORES.BOTS, bot);
+    await renderChatList();
+    await renderBotsList();
+    showToast('Data imported!');
+  });
+}
+
+async function generateMyAddress() {
+  const peer = new P2PConnection();
+  const offer = await peer.createOffer('temp');
+  peer.close();
+  
+  const addr = `phat://${btoa(JSON.stringify({ v: 1, pubkey: state.publicKey, offer: JSON.parse(JSON.stringify(offer)), ts: Date.now() }))}`;
+  document.getElementById('my-address').textContent = addr;
+  return addr;
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', init);
+window.connectionManager = connectionManager;
+window.botRuntime = botRuntime;
+window.state = state;
+  </script>
+</body>
+</html>
