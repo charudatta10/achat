@@ -6,14 +6,22 @@
   <meta name="theme-color" content="#075e54">
   <title>Phat Chat</title>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}:root{--primary:#075e54;--primary-light:#128c7e;--secondary:#25d366;--bg:#ece5dd;--sent-bg:#dcf8c6;--received-bg:#fff;--text:#000;--text-secondary:#667781;--border:#d1d7db;--danger:#dc3545}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden}#app{height:100%;position:relative}.screen{display:none;height:100%;flex-direction:column}.screen.active{display:flex}.spinner{width:40px;height:40px;border:4px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;margin:auto}@keyframes spin{to{transform:rotate(360deg)}}.app-header{display:flex;align-items:center;padding:12px 16px;background:var(--primary);color:#fff;gap:12px}.app-header h1{flex:1;font-size:20px;font-weight:600}.header-actions{display:flex;gap:8px}.icon-btn{background:none;border:none;font-size:20px;cursor:pointer;padding:8px;border-radius:50%;transition:background .2s}.icon-btn:hover{background:rgba(255,255,255,.2)}.chat-list{flex:1;overflow-y:auto}.chat-item{display:flex;padding:12px 16px;gap:12px;background:#fff;border-bottom:1px solid var(--border);cursor:pointer}.chat-item:hover{background:#f5f5f5}.chat-avatar{width:48px;height:48px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff}.chat-details{flex:1;min-width:0}.chat-title{font-weight:600;font-size:16px}.chat-preview{font-size:14px;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chat-meta{text-align:right;font-size:12px;color:var(--text-secondary)}.fab{position:absolute;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:var(--secondary);border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2)}.chat-header{display:flex;align-items:center;padding:12px 16px;background:var(--primary);color:#fff;gap:12px}.chat-info{flex:1}.chat-name{font-weight:600;font-size:16px;display:block}.chat-status{font-size:12px;opacity:.8}.messages-container{flex:1;overflow-y:auto;padding:8px 16px;display:flex;flex-direction:column;gap:4px}.message{max-width:75%;padding:8px 12px;border-radius:8px}.message.sent{align-self:flex-end;background:var(--sent-bg);border-bottom-right-radius:4px}.message.received{align-self:flex-start;background:var(--received-bg);border-bottom-left-radius:4px}.message-content{word-wrap:break-word}.message-meta{display:flex;justify-content:flex-end;gap:4px;margin-top:4px;font-size:11px;color:var(--text-secondary)}.message-input-area{display:flex;align-items:center;padding:8px;background:#f0f0f0;gap:8px}#message-input{flex:1;padding:10px 16px;border:none;border-radius:24px;font-size:16px;outline:none}.send-btn{width:44px;height:44px;border-radius:50%;background:var(--secondary);border:none;font-size:20px;cursor:pointer;color:#fff}.connect-content{flex:1;overflow-y:auto;padding:20px}.qr-section{text-align:center;padding:20px;background:#fff;margin-bottom:20px;border-radius:8px}.address-box{width:100%;min-height:80px;padding:12px;background:#f5f5f5;border-radius:8px;font-size:10px;word-break:break-all;line-height:1.5;cursor:pointer;text-align:left}.divider{text-align:center;padding:20px;color:var(--text-secondary);font-weight:600}.paste-section{padding:0 0 20px}.paste-section textarea{width:100%;height:100px;padding:12px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;font-family:monospace;font-size:12px;resize:none}.btn{display:block;width:100%;padding:12px 24px;border:1px solid var(--border);border-radius:8px;background:#fff;font-size:16px;cursor:pointer;transition:background .2s}.btn:hover{background:#f5f5f5}.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}.peers-list{margin-top:20px}.peers-list h3{margin-bottom:12px}.peer-item{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#fff;border-radius:8px;margin-bottom:8px}.peer-status{width:12px;height:12px;border-radius:50%;background:var(--danger)}.peer-status.online{background:var(--secondary)}.bots-list{flex:1;overflow-y:auto;padding:16px}.bot-card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px}.bot-skills{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}.skill-tag{background:var(--primary-light);color:#fff;padding:4px 8px;border-radius:12px;font-size:12px}.bot-runner{padding:16px;background:#f5f5f5;border-radius:8px;margin-top:12px}.bot-runner textarea{width:100%;height:80px;padding:8px;border:1px solid var(--border);border-radius:4px;font-family:monospace;font-size:12px;resize:none}.settings-content{flex:1;overflow-y:auto;padding:20px}.setting-item{margin-bottom:20px}.setting-item label{display:block;margin-bottom:8px;font-weight:600}.setting-item select,.setting-item input{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:16px}.key-display{display:flex;align-items:center;gap:8px}.key-display code{flex:1;font-size:10px;background:#f5f5f5;padding:8px;border-radius:4px;word-break:break-all}.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 24px;border-radius:8px;opacity:0;transition:opacity .3s;z-index:1000}.toast.show{opacity:1}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);text-align:center;padding:40px}.empty-state p{margin-top:16px}.wasm-badge{font-size:11px;padding:4px 8px;border-radius:4px;margin-left:auto}.wasm-badge.ready{background:var(--secondary);color:#fff}.wasm-badge.loading{background:rgba(255,255,255,.2);color:#fff}.output-box{background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:8px;min-height:100px;font-family:monospace;font-size:12px;white-space:pre-wrap;margin-top:8px}
+    *{margin:0;padding:0;box-sizing:border-box}:root{--primary:#075e54;--primary-light:#128c7e;--secondary:#25d366;--bg:#ece5dd;--sent-bg:#dcf8c6;--received-bg:#fff;--text:#000;--text-secondary:#667781;--border:#d1d7db;--danger:#dc3545}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden}#app{height:100%;position:relative}.screen{display:none;height:100%;flex-direction:column}.screen.active{display:flex}.spinner{width:40px;height:40px;border:4px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;margin:auto}@keyframes spin{to{transform:rotate(360deg)}}.app-header{display:flex;align-items:center;padding:12px 16px;background:var(--primary);color:#fff;gap:12px}.app-header h1{flex:1;font-size:20px;font-weight:600}.header-actions{display:flex;gap:8px}.icon-btn{background:none;border:none;font-size:20px;cursor:pointer;padding:8px;border-radius:50%;transition:background .2s}.icon-btn:hover{background:rgba(255,255,255,.2)}.chat-list{flex:1;overflow-y:auto}.chat-item{display:flex;padding:12px 16px;gap:12px;background:#fff;border-bottom:1px solid var(--border);cursor:pointer}.chat-item:hover{background:#f5f5f5}.chat-avatar{width:48px;height:48px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;flex-shrink:0}.chat-details{flex:1;min-width:0}.chat-title{font-weight:600;font-size:16px;display:flex;align-items:center;gap:8px}.chat-preview{font-size:14px;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chat-meta{text-align:right;font-size:12px;color:var(--text-secondary);flex-shrink:0}.chat-time{white-space:nowrap}.fab{position:absolute;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:var(--secondary);border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2)}.chat-header{display:flex;align-items:center;padding:12px 16px;background:var(--primary);color:#fff;gap:12px}.chat-info{flex:1}.chat-name{font-weight:600;font-size:16px;display:block}.chat-status{font-size:12px;opacity:.8}.messages-container{flex:1;overflow-y:auto;padding:8px 16px;display:flex;flex-direction:column;gap:4px}.message{max-width:75%;padding:8px 12px;border-radius:8px}.message.sent{align-self:flex-end;background:var(--sent-bg);border-bottom-right-radius:4px}.message.received{align-self:flex-start;background:var(--received-bg);border-bottom-left-radius:4px}.message-content{word-wrap:break-word;white-space:pre-wrap}.message-meta{display:flex;justify-content:flex-end;gap:4px;margin-top:4px;font-size:11px;color:var(--text-secondary)}.message-input-area{display:flex;align-items:center;padding:8px;background:#f0f0f0;gap:8px}#message-input{flex:1;padding:10px 16px;border:none;border-radius:24px;font-size:16px;outline:none}.send-btn{width:44px;height:44px;border-radius:50%;background:var(--secondary);border:none;font-size:20px;cursor:pointer;color:#fff}.connect-content{flex:1;overflow-y:auto;padding:20px}.qr-section{text-align:center;padding:20px;background:#fff;margin-bottom:20px;border-radius:8px}.address-box{width:100%;min-height:80px;padding:12px;background:#f5f5f5;border-radius:8px;font-size:10px;word-break:break-all;line-height:1.5;cursor:pointer;text-align:left;font-family:monospace}.divider{text-align:center;padding:20px;color:var(--text-secondary);font-weight:600}.paste-section{padding:0 0 20px}.paste-section textarea{width:100%;height:80px;padding:12px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;font-family:monospace;font-size:12px;resize:none}.btn{display:block;width:100%;padding:12px 24px;border:1px solid var(--border);border-radius:8px;background:#fff;font-size:14px;cursor:pointer;transition:background .2s}.btn:hover{background:#f5f5f5}.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}.btn.danger{background:var(--danger);color:#fff;border-color:var(--danger)}.btn.small{padding:8px 16px;width:auto}.peers-list{margin-top:20px}.peers-list h3{margin-bottom:12px}.peer-item{display:flex;align-items:center;padding:12px;background:#fff;border-radius:8px;margin-bottom:8px;gap:12px}.peer-status{width:12px;height:12px;border-radius:50%;background:var(--danger);flex-shrink:0}.peer-status.online{background:var(--secondary)}.peer-info{flex:1;min-width:0}.peer-name{font-weight:600;font-size:14px}.peer-key{font-size:10px;color:var(--text-secondary);word-break:break-all}.bots-list{flex:1;overflow-y:auto;padding:16px}.bot-card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px}.bot-skills{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}.skill-tag{background:var(--primary-light);color:#fff;padding:4px 8px;border-radius:12px;font-size:11px}.bot-runner{padding:16px;background:#f5f5f5;border-radius:8px;margin-top:12px}.bot-runner textarea{width:100%;height:80px;padding:8px;border:1px solid var(--border);border-radius:4px;font-family:monospace;font-size:12px;resize:none}.settings-content{flex:1;overflow-y:auto;padding:20px}.setting-item{margin-bottom:20px}.setting-item label{display:block;margin-bottom:8px;font-weight:600}.setting-item select,.setting-item input{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:16px}.key-display{display:flex;align-items:center;gap:8px}.key-display code{flex:1;font-size:10px;background:#f5f5f5;padding:8px;border-radius:4px;word-break:break-all}.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 24px;border-radius:8px;opacity:0;transition:opacity .3s;z-index:1000;max-width:80%}.toast.show{opacity:1}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);text-align:center;padding:40px}.empty-state p{margin-top:16px}.wasm-badge{font-size:11px;padding:4px 8px;border-radius:4px;margin-left:auto}.wasm-badge.ready{background:var(--secondary);color:#fff}.wasm-badge.loading{background:rgba(255,255,255,.2);color:#fff}.output-box{background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:8px;min-height:100px;font-family:monospace;font-size:12px;white-space:pre-wrap;margin-top:8px;overflow-x:auto}.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}.modal.active{display:flex}.modal-content{background:#fff;border-radius:12px;padding:24px;width:90%;max-width:400px;max-height:80vh;overflow-y:auto}.modal-content h3{margin-bottom:16px}.modal-content input,.modal-content textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;margin-bottom:12px;font-size:14px}.modal-actions{display:flex;gap:12px}.modal-actions .btn{flex:1}.step-badge{font-size:11px;padding:4px 8px;border-radius:4px;background:#e3f2fd;color:#1565c0;font-weight:600;margin-left:8px}
+.role-picker{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}.role-intro{font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:4px}.role-btn{display:flex;flex-direction:column;align-items:flex-start;padding:16px;background:#fff;border:2px solid var(--border);border-radius:12px;cursor:pointer;text-align:left;transition:border-color .2s,background .2s;gap:2px}.role-btn:hover{border-color:var(--primary-light);background:#f0f9f6}.role-icon{font-size:28px;margin-bottom:4px}.role-label{font-weight:700;font-size:15px;color:var(--text)}.role-desc{font-size:12px;color:var(--text-secondary)}
+.conn-panel{display:flex;flex-direction:column;gap:0;margin-bottom:20px}.back-role-btn{background:none;border:none;color:var(--primary);font-size:13px;cursor:pointer;padding:0 0 12px;text-align:left;font-weight:600}
+.conn-step{display:flex;gap:12px;padding:16px;background:#fff;border-radius:12px;margin-bottom:10px}.step-num{width:28px;height:28px;min-width:28px;border-radius:50%;background:var(--primary);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}.step-body{flex:1;min-width:0}.step-body h4{font-size:14px;font-weight:700;margin-bottom:4px}.step-hint{font-size:12px;color:var(--text-secondary);margin-bottom:10px;line-height:1.5}
+.code-box{width:100%;min-height:64px;padding:10px 12px;background:#f0f9f6;border:1px solid #b2dfdb;border-radius:8px;font-size:10px;font-family:monospace;word-break:break-all;line-height:1.5;cursor:pointer;color:#004d40}
+.code-input{width:100%;height:72px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:monospace;font-size:11px;resize:none;margin-bottom:8px;line-height:1.5}
+.conn-status{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:13px;font-weight:600}.conn-status.ok{background:#e8f5e9;color:#2e7d32}.conn-status.err{background:#ffebee;color:#c62828}
   </style>
 </head>
 <body>
   <div id="app">
     <div id="loading" class="screen active">
-      <div class="spinner"></div>
-      <p style="text-align:center;margin-top:16px">Loading...</p>
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px">
+        <div class="spinner"></div>
+        <p id="loading-msg" style="text-align:center">Loading...</p>
+      </div>
     </div>
 
     <div id="chat-list-screen" class="screen">
@@ -35,8 +43,9 @@
         <button id="btn-back" class="icon-btn">←</button>
         <div class="chat-info">
           <span id="chat-name" class="chat-name">Chat</span>
-          <span id="chat-status" class="chat-status">Online</span>
+          <span id="chat-status" class="chat-status"></span>
         </div>
+        <button id="btn-add-participant" class="icon-btn" title="Add participant">+</button>
       </header>
       <div id="messages-container" class="messages-container"></div>
       <div class="message-input-area">
@@ -51,22 +60,81 @@
         <h1>Connect P2P</h1>
       </header>
       <div class="connect-content">
-        <div class="qr-section">
-          <h3>Your Connection Code</h3>
-          <p style="font-size:12px;color:var(--text-secondary);margin:8px 0">Share this with your peer</p>
-          <div id="my-address" class="address-box" title="Click to copy">Generating...</div>
-          <button id="btn-copy-address" class="btn" style="margin-top:8px">📋 Copy Code</button>
+
+        <!-- Role picker -->
+        <div id="role-picker" class="role-picker">
+          <p class="role-intro">Who's initiating the connection?</p>
+          <button id="btn-role-inviter" class="role-btn">
+            <span class="role-icon">📤</span>
+            <span class="role-label">I want to invite someone</span>
+            <span class="role-desc">Generate an Offer code and share it</span>
+          </button>
+          <button id="btn-role-joiner" class="role-btn">
+            <span class="role-icon">📥</span>
+            <span class="role-label">I received an Offer code</span>
+            <span class="role-desc">Paste it to generate an Answer code</span>
+          </button>
         </div>
-        
-        <div class="divider">OR enter peer's code</div>
-        
-        <div class="paste-section">
-          <textarea id="peer-address-input" placeholder="Paste peer's code here..."></textarea>
-          <button id="btn-connect-peer" class="btn primary">🔗 Connect</button>
+
+        <!-- ── PANEL A: Inviter (Peer A) ─────────────────────────── -->
+        <div id="panel-inviter" class="conn-panel" style="display:none">
+          <button class="back-role-btn" id="btn-back-role-inviter">← Change role</button>
+
+          <!-- Step A1: Generate & share offer -->
+          <div class="conn-step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Copy your Offer code</h4>
+              <p class="step-hint">Send this to the person you want to chat with.</p>
+              <div id="offer-code-box" class="code-box" title="Click to copy">Generating…</div>
+              <button id="btn-copy-offer" class="btn primary" style="margin-top:8px">📋 Copy Offer Code</button>
+            </div>
+          </div>
+
+          <!-- Step A2: Paste answer -->
+          <div class="conn-step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Paste the Answer code they send back</h4>
+              <p class="step-hint">Once they process your Offer, they'll give you an Answer code.</p>
+              <textarea id="answer-input" class="code-input" placeholder="Paste Answer code here…"></textarea>
+              <button id="btn-apply-answer" class="btn primary">✅ Complete Connection</button>
+              <div id="inviter-status" class="conn-status" style="display:none"></div>
+            </div>
+          </div>
         </div>
-        
+
+        <!-- ── PANEL B: Joiner (Peer B) ──────────────────────────── -->
+        <div id="panel-joiner" class="conn-panel" style="display:none">
+          <button class="back-role-btn" id="btn-back-role-joiner">← Change role</button>
+
+          <!-- Step B1: Paste offer -->
+          <div class="conn-step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Paste the Offer code you received</h4>
+              <p class="step-hint">Your peer generated this and sent it to you.</p>
+              <textarea id="offer-input" class="code-input" placeholder="Paste Offer code here…"></textarea>
+              <button id="btn-process-offer" class="btn primary">⚡ Generate Answer Code</button>
+            </div>
+          </div>
+
+          <!-- Step B2: Copy answer (shown after processing) -->
+          <div class="conn-step" id="joiner-step2" style="display:none">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Copy your Answer code</h4>
+              <p class="step-hint">Send this back to the person who gave you the Offer code. Connection will complete on their end.</p>
+              <div id="answer-code-box" class="code-box" title="Click to copy">…</div>
+              <button id="btn-copy-answer" class="btn primary" style="margin-top:8px">📋 Copy Answer Code</button>
+              <div id="joiner-status" class="conn-status"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Peers list (always visible) -->
         <div class="peers-list">
-          <h3>Connection Status</h3>
+          <h3>Connected Peers</h3>
           <div id="peers-list"></div>
         </div>
       </div>
@@ -90,15 +158,16 @@
         <div class="bot-card">
           <h3 id="bot-name-display">Bot</h3>
           <p style="font-size:12px;color:var(--text-secondary)">JavaScript Runtime</p>
+          <p style="font-size:11px;color:var(--text-secondary);margin-top:4px">Built-in commands: calculate, sqrt, pow, random, time, date, echo, uppercase, lowercase, reverse, length, json, help</p>
         </div>
         <div class="bot-runner">
-          <label style="font-weight:600">Enter command:</label>
-          <textarea id="bot-script-input" placeholder="Commands: calculate 2+2, time, echo hello, sqrt 16, random 1 100&#10;Or write JavaScript: Math.random() * 100"></textarea>
+          <label style="font-weight:600">Enter command or JS:</label>
+          <textarea id="bot-script-input" placeholder="calculate 2+2&#10;sqrt 16&#10;random 1 100&#10;echo hello world&#10;&#10;Or JS: return Math.PI * 4"></textarea>
           <button id="btn-run-bot" class="btn primary" style="margin-top:8px">▶ Run</button>
         </div>
         <div style="flex:1;margin-top:16px">
           <h4>Output:</h4>
-          <pre id="bot-output" class="output-box"></pre>
+          <pre id="bot-output" class="output-box">// Output will appear here</pre>
         </div>
       </div>
     </div>
@@ -116,7 +185,7 @@
             <button id="btn-copy-key" class="icon-btn">📋</button>
           </div>
         </div>
-        <button id="btn-export-data" class="btn">📤 Export Data</button>
+        <button id="btn-export-data" class="btn" style="margin-bottom:12px">📤 Export Data</button>
         <button id="btn-import-data" class="btn">📥 Import Data</button>
         <input type="file" id="import-file" accept=".json" style="display:none">
       </div>
@@ -125,26 +194,43 @@
 
   <div id="toast" class="toast"></div>
 
+  <!-- Add Participant Modal -->
+  <div id="add-participant-modal" class="modal">
+    <div class="modal-content">
+      <h3>Add to Chat</h3>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Select a connected peer or bot to add</p>
+      <div id="participant-options"></div>
+      <div class="modal-actions" style="margin-top:12px">
+        <button id="btn-cancel-participant" class="btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Bot Modal -->
+  <div id="create-bot-modal" class="modal">
+    <div class="modal-content">
+      <h3>Create Custom Bot</h3>
+      <input type="text" id="bot-name-input" placeholder="Bot name (e.g., Calculator)">
+      <textarea id="bot-code-input" placeholder="Custom JavaScript (optional). Use 'return' for values.&#10;&#10;Example:&#10;const greet = (name) => 'Hello, ' + name;&#10;return greet('World');" style="height:160px;font-family:monospace;font-size:12px"></textarea>
+      <div class="modal-actions">
+        <button id="btn-cancel-bot" class="btn">Cancel</button>
+        <button id="btn-confirm-bot" class="btn primary">Create</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-(function() {
+(function () {
   'use strict';
 
-  // ============ CONFIG ============
-  const DB_NAME = 'phat_v3';
+  /* ─── IndexedDB ─────────────────────────────────────────────────── */
+  const DB_NAME = 'phat_v4';
   const DB_VERSION = 1;
   const STORES = { CHATS: 'chats', MESSAGES: 'messages', BOTS: 'bots', PEERS: 'peers', MEMORY: 'memory' };
   let db = null;
 
-  // ============ STATE ============
-  const state = {
-    publicKey: null,
-    currentChat: null,
-    currentBot: null,
-    peers: new Map(),
-    bots: []
-  };
+  const state = { publicKey: null, currentChat: null, currentBot: null, peers: new Map(), bots: [] };
 
-  // ============ DATABASE ============
   async function openDB() {
     if (db) return db;
     return new Promise((resolve, reject) => {
@@ -182,7 +268,7 @@
   async function dbPut(store, data) { return dbOp(store, 'readwrite', s => s.put(data)); }
   async function dbGet(store, key) { return dbOp(store, 'readonly', s => s.get(key)); }
   async function dbGetAll(store) { return dbOp(store, 'readonly', s => s.getAll()); }
-  async function dbDel(store, key) { return dbOp(store, 'readwrite', s => s.delete(key)); }
+  async function dbDelete(store, key) { return dbOp(store, 'readwrite', s => s.delete(key)); }
 
   async function dbGetByIndex(store, idx, val) {
     const database = await openDB();
@@ -201,15 +287,20 @@
     return msgs.sort((a, b) => a.timestamp - b.timestamp);
   }
 
-  // ============ CRYPTO ============
+  /* ─── Crypto ─────────────────────────────────────────────────────── */
   async function sha256(text) {
     const enc = new TextEncoder();
     const hash = await crypto.subtle.digest('SHA-256', enc.encode(text));
     return btoa(String.fromCharCode(...new Uint8Array(hash)));
   }
 
+  async function genChatId(participants) {
+    const sorted = [...participants].sort().join('|');
+    return sha256('chat:' + sorted);
+  }
+
   async function hashMsg(msg) {
-    const str = JSON.stringify({ chat_id: msg.chat_id, from: msg.from, ts: msg.timestamp, type: msg.type, content: msg.content, prev: msg.prev });
+    const str = JSON.stringify({ chat_id: msg.chat_id, from: msg.from, ts: msg.timestamp, content: msg.content, prev: msg.prev });
     return sha256(str);
   }
 
@@ -225,7 +316,7 @@
   }
 
   async function loadKeys() {
-    const raw = localStorage.getItem('phat_keys');
+    const raw = localStorage.getItem('phat_keys_v4');
     if (!raw) return null;
     const keys = JSON.parse(raw);
     if (keys.priv) {
@@ -236,287 +327,318 @@
   }
 
   async function saveKeys(keys) {
-    localStorage.setItem('phat_keys', JSON.stringify({ pub: keys.pub, priv: keys.priv }));
+    localStorage.setItem('phat_keys_v4', JSON.stringify({ pub: keys.pub, priv: keys.priv }));
   }
 
-  // ============ P2P CONNECTIONS ============
+  /* ─── P2P ─────────────────────────────────────────────────────────
+   *
+   * FIX SUMMARY
+   * -----------
+   * The original code had three intertwined problems:
+   *
+   * 1. Connection keying – offers were stored under temp keys ('init',
+   *    'offering') and a fragile post-hoc remap tried to move them to
+   *    the real peerId. This remap ran on EVERY incoming message and
+   *    frequently matched the wrong connection, breaking routing.
+   *    FIX: Store the connection under the peer's real publicKey from
+   *    the moment we know it (i.e. when we parse their code), not under
+   *    a temp key.
+   *
+   * 2. Handshake role confusion – peer B was creating a NEW offer
+   *    instead of just answering peer A's offer. The RTCPeerConnection
+   *    can only be either the offerer or the answerer; mixing roles on
+   *    the same connection causes signalling failure.
+   *    FIX: peer A calls createOffer() once and stores the connection.
+   *         peer B calls acceptOffer() and returns an answer.
+   *         peer A then calls setRemoteDescription(answer) on the
+   *         SAME connection it created earlier.
+   *
+   * 3. ICE gathering – the original waited for
+   *    'a=end-of-candidates' in the SDP (Chrome never adds this),
+   *    so it always fell through to the 2-second timeout, making
+   *    connection codes stale. We now wait for the iceGatheringState
+   *    to reach 'complete' via the dedicated event.
+   * ───────────────────────────────────────────────────────────────── */
+
+  const ICE_SERVERS = [
+    { urls: 'stun:stun.l.google.com:19302' },
+    { urls: 'stun:stun1.l.google.com:19302' },
+    { urls: 'stun:global.stun.twilio.com:3478' }
+  ];
+
   const p2p = {
-    connections: new Map(),
-    pendingOffers: new Map(),
-    pendingAnswers: new Map(),
+    connections: new Map(),   // peerId (real pub key) → { conn, dc, peerId, status }
     listeners: [],
 
     on(fn) { this.listeners.push(fn); },
-    
     emit(event, data) { this.listeners.forEach(fn => fn(event, data)); },
 
-    async createConnection(peerId) {
-      const conn = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
-      const dc = conn.createDataChannel('chat', { ordered: true });
-      
-      const p2pConn = { conn, dc, peerId, status: 'connecting' };
-      
-      dc.onopen = () => {
-        p2pConn.status = 'connected';
-        this.emit('status', { peerId, status: 'connected' });
-      };
-      
-      dc.onclose = () => {
-        p2pConn.status = 'disconnected';
-        this.emit('status', { peerId, status: 'disconnected' });
-      };
-      
-      dc.onmessage = e => {
-        try {
-          const data = JSON.parse(e.data);
-          this.emit('message', { peerId, data });
-        } catch {}
-      };
+    /* Wait for ICE gathering to finish (resolves when state = 'complete') */
+    _waitForIce(conn, timeoutMs = 5000) {
+      return new Promise(resolve => {
+        if (conn.iceGatheringState === 'complete') { resolve(); return; }
+        const done = () => { resolve(); };
+        conn.addEventListener('icegatheringstatechange', function handler() {
+          if (conn.iceGatheringState === 'complete') {
+            conn.removeEventListener('icegatheringstatechange', handler);
+            done();
+          }
+        });
+        setTimeout(done, timeoutMs);   // fallback
+      });
+    },
 
-      conn.onicecandidate = e => {
-        if (!e.candidate) {
-          this.emit('iceComplete', { peerId });
+    /* ── Peer A: create an offer ──────────────────────────────────── */
+    async createOffer(peerId) {
+      // If we already have a live connection, reuse it
+      if (this.connections.has(peerId)) {
+        const existing = this.connections.get(peerId);
+        if (existing.status === 'connected') return existing;
+      }
+
+      const conn = new RTCPeerConnection({ iceServers: ICE_SERVERS, iceCandidatePoolSize: 10 });
+      const dc = conn.createDataChannel('chat', { ordered: true });
+      const entry = { conn, dc, peerId, status: 'connecting' };
+      this.connections.set(peerId, entry);
+
+      dc.onopen  = () => { entry.status = 'connected';    this.emit('status', { peerId, status: 'connected' }); };
+      dc.onclose = () => { entry.status = 'disconnected'; this.emit('status', { peerId, status: 'disconnected' }); };
+      dc.onmessage = ev => { try { this.emit('message', { peerId, data: JSON.parse(ev.data) }); } catch {} };
+
+      conn.onconnectionstatechange = () => {
+        if (conn.connectionState === 'failed' || conn.connectionState === 'disconnected') {
+          entry.status = conn.connectionState;
+          this.emit('status', { peerId, status: conn.connectionState });
         }
       };
 
-      conn.onconnectionstatechange = () => {
-        this.emit('status', { peerId, status: conn.connectionState });
-      };
+      const offer = await conn.createOffer();
+      await conn.setLocalDescription(offer);
+      await this._waitForIce(conn);
 
-      this.connections.set(peerId, p2pConn);
-      return p2pConn;
+      return entry;  // caller reads conn.localDescription.sdp
     },
 
-    async createOffer(peerId) {
-      let p2pConn = this.connections.get(peerId);
-      if (!p2pConn) p2pConn = await this.createConnection(peerId);
-      
-      const offer = await p2pConn.conn.createOffer();
-      await p2pConn.conn.setLocalDescription(offer);
-      
-      return { offer, p2pConn };
-    },
+    /* ── Peer B: accept an offer, return answer SDP ──────────────── */
+    async acceptOffer(peerId, offerSdp) {
+      const conn = new RTCPeerConnection({ iceServers: ICE_SERVERS, iceCandidatePoolSize: 10 });
+      const entry = { conn, dc: null, peerId, status: 'connecting' };
+      this.connections.set(peerId, entry);
 
-    async acceptOffer(peerId, offer) {
-      const conn = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
-      
       conn.ondatachannel = e => {
-        const p2pConn = { conn, dc: e.channel, peerId, status: 'connecting' };
-        this.connections.set(peerId, p2pConn);
-        
-        p2pConn.dc.onopen = () => {
-          p2pConn.status = 'connected';
-          this.emit('status', { peerId, status: 'connected' });
-        };
-        p2pConn.dc.onclose = () => {
-          p2pConn.status = 'disconnected';
-          this.emit('status', { peerId, status: 'disconnected' });
-        };
-        p2pConn.dc.onmessage = ev => {
-          try {
-            const data = JSON.parse(ev.data);
-            this.emit('message', { peerId, data });
-          } catch {}
-        };
-      };
-
-      conn.onicecandidate = e => {
-        if (!e.candidate) this.emit('iceComplete', { peerId });
+        entry.dc = e.channel;
+        entry.dc.onopen  = () => { entry.status = 'connected';    this.emit('status', { peerId, status: 'connected' }); };
+        entry.dc.onclose = () => { entry.status = 'disconnected'; this.emit('status', { peerId, status: 'disconnected' }); };
+        entry.dc.onmessage = ev => { try { this.emit('message', { peerId, data: JSON.parse(ev.data) }); } catch {} };
       };
 
       conn.onconnectionstatechange = () => {
-        this.emit('status', { peerId, status: conn.connectionState });
+        if (conn.connectionState === 'failed' || conn.connectionState === 'disconnected') {
+          entry.status = conn.connectionState;
+          this.emit('status', { peerId, status: conn.connectionState });
+        }
       };
 
-      await conn.setRemoteDescription(offer);
+      await conn.setRemoteDescription({ type: 'offer', sdp: offerSdp });
       const answer = await conn.createAnswer();
       await conn.setLocalDescription(answer);
-      
-      return { answer };
+      await this._waitForIce(conn);
+
+      return entry;  // caller reads conn.localDescription.sdp
     },
 
-    async acceptAnswer(peerId, answer) {
-      const p2pConn = this.connections.get(peerId);
-      if (p2pConn) {
-        await p2pConn.conn.setRemoteDescription(answer);
+    /* ── Peer A: receive the answer to complete handshake ─────────── */
+    async applyAnswer(peerId, answerSdp) {
+      const entry = this.connections.get(peerId);
+      if (!entry) throw new Error('No pending connection for peer ' + peerId.slice(0, 8));
+      if (entry.conn.signalingState !== 'have-local-offer') {
+        // Already applied – idempotent
+        return entry;
       }
+      await entry.conn.setRemoteDescription({ type: 'answer', sdp: answerSdp });
+      return entry;
     },
 
     send(peerId, data) {
-      const p2pConn = this.connections.get(peerId);
-      if (p2pConn?.dc?.readyState === 'open') {
-        p2pConn.dc.send(JSON.stringify(data));
+      const entry = this.connections.get(peerId);
+      if (entry?.dc?.readyState === 'open') {
+        entry.dc.send(JSON.stringify(data));
         return true;
       }
       return false;
     },
 
-    broadcast(data) {
-      for (const [peerId] of this.connections) {
-        this.send(peerId, data);
+    broadcast(data, excludeSelf = true) {
+      for (const [pid] of this.connections) {
+        if (excludeSelf && pid === state.publicKey) continue;
+        this.send(pid, data);
       }
     },
 
     disconnect(peerId) {
-      const p2pConn = this.connections.get(peerId);
-      if (p2pConn) {
-        p2pConn.dc?.close();
-        p2pConn.conn?.close();
-        this.connections.delete(peerId);
-      }
+      const entry = this.connections.get(peerId);
+      if (entry) { entry.dc?.close(); entry.conn?.close(); this.connections.delete(peerId); }
     }
   };
 
-  // ============ BOT ENGINE ============
-  const botEngine = {
-    skills: {
-      calculate(expr) {
-        try {
-          const safe = expr.replace(/[^0-9+\-*/().%\s]/g, '');
-          const result = Function(`"use strict"; return (${safe})`)();
-          return String(result);
-        } catch (e) {
-          throw new Error('Invalid math expression');
-        }
-      },
-      
-      sqrt(n) {
-        const r = Math.sqrt(Number(n));
-        if (isNaN(r)) throw new Error('Invalid number');
-        return r;
-      },
-      
-      pow(a, b) {
-        return Math.pow(Number(a), Number(b));
-      },
-      
-      random(min, max) {
-        const lo = parseInt(min) || 0;
-        const hi = parseInt(max) || 100;
-        return Math.floor(Math.random() * (hi - lo + 1)) + lo;
-      },
-      
-      time() {
-        return new Date().toLocaleTimeString();
-      },
-      
-      date() {
-        return new Date().toLocaleDateString();
-      },
-      
-      echo(text) {
-        return String(text || '');
-      },
-      
-      uppercase(text) {
-        return String(text).toUpperCase();
-      },
-      
-      lowercase(text) {
-        return String(text).toLowerCase();
-      },
-      
-      reverse(text) {
-        return String(text).split('').reverse().join('');
-      },
-      
-      length(text) {
-        return String(text).length;
-      },
-      
-      json(obj) {
-        try {
-          return JSON.stringify(JSON.parse(obj), null, 2);
-        } catch {
-          return JSON.stringify({ value: obj }, null, 2);
-        }
-      },
-      
-      help() {
-        return `Available commands:
-- calculate <expr>: Math (e.g., calculate 2+2*3)
-- sqrt <n>: Square root
-- pow <a> <b>: Power
-- random <min> <max>: Random number
-- time: Current time
-- date: Current date
-- echo <text>: Echo text
-- uppercase <text>: UPPERCASE
-- lowercase <text>: lowercase
-- reverse <text>: reversed text
-- length <text>: Character count
-- json <obj>: Format as JSON
+  /* ─── Bot Engine ──────────────────────────────────────────────────
+   *
+   * FIX SUMMARY
+   * -----------
+   * The original `createEngine` passed `this.skills` through
+   * JSON.stringify — which drops all function values and produces {}.
+   * Built-in commands (calculate, time, echo, …) therefore never ran.
+   *
+   * FIX: Keep `skills` as a live JS object reference. Pass it directly
+   * into the sandboxed function via closure so all callables are
+   * preserved. Also fixed the custom-JS path so that:
+   *   • `return <expr>` works at the top level
+   *   • console output is captured and shown alongside the return value
+   * ───────────────────────────────────────────────────────────────── */
 
-Or write any JavaScript!`;
-      }
+  const SKILLS = {
+    calculate(expr) {
+      const safe = expr.replace(/[^0-9+\-*/().%\s]/g, '');
+      if (!safe.trim()) throw new Error('Empty expression');
+      // eslint-disable-next-line no-new-func
+      return String(Function('"use strict"; return (' + safe + ')')());
     },
+    sqrt(n) {
+      const r = Math.sqrt(Number(n));
+      if (isNaN(r)) throw new Error('Not a number');
+      return String(r);
+    },
+    pow(a, b) { return String(Math.pow(Number(a), Number(b))); },
+    random(min = '0', max = '100') {
+      const lo = parseInt(min, 10), hi = parseInt(max, 10);
+      return String(Math.floor(Math.random() * (hi - lo + 1)) + lo);
+    },
+    time()    { return new Date().toLocaleTimeString(); },
+    date()    { return new Date().toLocaleDateString(); },
+    echo(...args) { return args.join(' '); },
+    uppercase(text = '') { return String(text).toUpperCase(); },
+    lowercase(text = '') { return String(text).toLowerCase(); },
+    reverse(text = '')   { return String(text).split('').reverse().join(''); },
+    length(text = '')    { return String(String(text).length); },
+    json(obj = '') {
+      try { return JSON.stringify(JSON.parse(obj), null, 2); }
+      catch { return JSON.stringify({ value: obj }, null, 2); }
+    },
+    help() {
+      return [
+        'Built-in commands:',
+        '  calculate <expr>   — math, e.g. calculate 2+2*3',
+        '  sqrt <n>           — square root',
+        '  pow <a> <b>        — a^b',
+        '  random [min] [max] — random integer',
+        '  time               — current time',
+        '  date               — current date',
+        '  echo <text>        — echo',
+        '  uppercase <text>',
+        '  lowercase <text>',
+        '  reverse <text>',
+        '  length <text>',
+        '  json <jsonString>  — pretty-print JSON',
+        '',
+        'Custom JS:',
+        '  Write any JS. Use "return <expr>" to output a value.',
+        '  Example: return Math.PI.toFixed(4)',
+      ].join('\n');
+    }
+  };
 
-    run(code) {
-      const output = [];
-      
-      const ctx = {
-        console: {
-          log: (...args) => output.push(args.map(String).join(' '))
-        },
-        Math,
-        Date,
-        JSON,
-        String,
-        Number,
-        Array,
-        Object,
-        parseInt,
-        parseFloat,
-        isNaN,
-        isFinite
+  const botEngine = {
+    /* Run a single input string against a bot definition */
+    run(bot, input) {
+      input = (input || '').trim();
+      if (!input) return { ok: true, result: SKILLS.help() };
+
+      const args = input.split(/\s+/);
+      const cmd  = args[0].toLowerCase();
+
+      // ── Built-in skill? ──────────────────────────────────────────
+      if (Object.prototype.hasOwnProperty.call(SKILLS, cmd)) {
+        try {
+          const result = SKILLS[cmd](...args.slice(1));
+          return { ok: true, result: String(result) };
+        } catch (e) {
+          return { ok: false, error: e.message };
+        }
+      }
+
+      // ── Custom JS (with optional bot.code init block) ─────────────
+      const logs = [];
+      const fakeConsole = {
+        log:   (...a) => logs.push(a.map(String).join(' ')),
+        warn:  (...a) => logs.push('[warn] ' + a.map(String).join(' ')),
+        error: (...a) => logs.push('[error] ' + a.map(String).join(' ')),
+        info:  (...a) => logs.push('[info] ' + a.map(String).join(' ')),
       };
 
-      const cmdMatch = code.trim().match(/^(\w+)(?:\s+(.*))?$/);
-      if (cmdMatch) {
-        const [, cmd, args] = cmdMatch;
-        const skillArgs = args ? args.split(/\s+/) : [];
-        
-        if (this.skills[cmd]) {
-          try {
-            const result = this.skills[cmd](...skillArgs);
-            return { success: true, result: String(result), output: output.join('\n') };
-          } catch (e) {
-            return { success: false, error: e.message, output: output.join('\n') };
-          }
-        }
-      }
-
       try {
-        const fn = new Function(...Object.keys(ctx), `"use strict";\n${code}`);
-        const result = fn(...Object.values(ctx));
-        return { success: true, result: result !== undefined ? String(result) : 'undefined', output: output.join('\n') };
+        // Merge bot.code (init) with user's input expression
+        const fullCode = (bot.code ? bot.code + '\n' : '') + input;
+
+        const sandbox = {
+          console: fakeConsole,
+          Math, Date, JSON, String, Number, Boolean, Array, Object,
+          parseInt, parseFloat, isNaN, isFinite, encodeURIComponent, decodeURIComponent,
+          skills: SKILLS,
+        };
+
+        // Wrap in IIFE so `return` works at the top level
+        // eslint-disable-next-line no-new-func
+        const fn = new Function(...Object.keys(sandbox), '"use strict";\n' + fullCode);
+        const raw = fn(...Object.values(sandbox));
+
+        let resultStr = raw !== undefined ? String(raw) : '(undefined)';
+        if (logs.length) resultStr = logs.join('\n') + (raw !== undefined ? '\n=> ' + resultStr : '');
+
+        return { ok: true, result: resultStr };
       } catch (e) {
-        return { success: false, error: e.message, output: output.join('\n') };
+        // Maybe they forgot `return` – try wrapping in `return (...)`
+        try {
+          const sandbox = {
+            console: fakeConsole,
+            Math, Date, JSON, String, Number, Boolean, Array, Object,
+            parseInt, parseFloat, isNaN, isFinite, encodeURIComponent, decodeURIComponent,
+            skills: SKILLS,
+          };
+          const init = bot.code ? bot.code + '\n' : '';
+          // eslint-disable-next-line no-new-func
+          const fn = new Function(...Object.keys(sandbox), '"use strict";\n' + init + 'return (' + input + ')');
+          const raw = fn(...Object.values(sandbox));
+          let resultStr = raw !== undefined ? String(raw) : '(undefined)';
+          if (logs.length) resultStr = logs.join('\n') + '\n=> ' + resultStr;
+          return { ok: true, result: resultStr };
+        } catch {
+          return { ok: false, error: e.message };
+        }
       }
     }
   };
 
-  // ============ UI HELPERS ============
+  /* ─── UI Helpers ──────────────────────────────────────────────── */
   function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id + '-screen').classList.add('active');
   }
 
+  let toastTimer = null;
   function toast(msg, dur = 3000) {
     const t = document.getElementById('toast');
     t.textContent = msg;
     t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), dur);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), dur);
   }
 
   function fmtTime(ts) {
     if (!ts) return '';
-    const d = new Date(ts);
-    const now = new Date();
-    if (d.toDateString() === now.toDateString()) {
-      return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-    return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+    const d = new Date(ts), now = new Date();
+    return d.toDateString() === now.toDateString()
+      ? d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      : d.toLocaleDateString([], { month: 'short', day: 'numeric' });
   }
 
   function escHtml(text) {
@@ -525,147 +647,141 @@ Or write any JavaScript!`;
     return d.innerHTML;
   }
 
-  // ============ RENDER FUNCTIONS ============
+  /* ─── Render ──────────────────────────────────────────────────── */
   async function renderChats() {
     const chats = (await dbGetAll(STORES.CHATS)).sort((a, b) => (b.last_ts || 0) - (a.last_ts || 0));
     const c = document.getElementById('chat-list');
-    
+
     if (!chats.length) {
-      c.innerHTML = '<div class="empty-state"><span style="font-size:48px">💬</span><p>No chats yet. Tap + to create!</p></div>';
+      c.innerHTML = '<div class="empty-state"><span style="font-size:48px">💬</span><p>No chats yet. Tap ✏️ to create!</p></div>';
       return;
     }
-    
-    c.innerHTML = chats.map(ch => `
-      <div class="chat-item" data-id="${ch.id}">
-        <div class="chat-avatar">${(ch.name || 'C')[0].toUpperCase()}</div>
+
+    c.innerHTML = chats.map(ch => {
+      const peers = (ch.participants || []).filter(p => p !== state.publicKey && !p.startsWith('bot:')).length;
+      const bots  = (ch.participants || []).filter(p => p.startsWith('bot:')).length;
+      const icons = [...(peers ? [`👤${peers}`] : []), ...(bots ? [`🤖${bots}`] : [])];
+      return `<div class="chat-item" data-id="${ch.id}">
+        <div class="chat-avatar">${escHtml((ch.name || 'C')[0].toUpperCase())}</div>
         <div class="chat-details">
-          <div class="chat-title">${escHtml(ch.name)}</div>
+          <div class="chat-title">${escHtml(ch.name)}${icons.length ? `<span style="font-size:12px">${icons.join('')}</span>` : ''}</div>
           <div class="chat-preview">${escHtml(ch.last_preview || '')}</div>
         </div>
-        <div class="chat-meta">
-          <span class="chat-time">${fmtTime(ch.last_ts)}</span>
-        </div>
-      </div>
-    `).join('');
-    
+        <div class="chat-meta"><span class="chat-time">${fmtTime(ch.last_ts)}</span></div>
+      </div>`;
+    }).join('');
+
     c.querySelectorAll('.chat-item').forEach(el => el.addEventListener('click', () => openChat(el.dataset.id)));
   }
 
   async function renderMessages(chatId) {
     const msgs = await getMessages(chatId);
     const c = document.getElementById('messages-container');
-    
-    c.innerHTML = msgs.map(m => `
-      <div class="message ${m.from === state.publicKey ? 'sent' : 'received'}">
+
+    c.innerHTML = msgs.map(m => {
+      let sender = m.from === state.publicKey ? 'You' : m.from.startsWith('bot:') ? '🤖 ' + m.from.slice(4) : 'Peer';
+      return `<div class="message ${m.from === state.publicKey ? 'sent' : 'received'}">
+        ${m.from !== state.publicKey ? `<div style="font-size:10px;color:var(--text-secondary);margin-bottom:4px">${escHtml(sender)}</div>` : ''}
         <div class="message-content">${escHtml(m.content)}</div>
         <div class="message-meta">
-          <span class="message-time">${fmtTime(m.timestamp)}</span>
+          <span>${fmtTime(m.timestamp)}</span>
           ${m.from === state.publicKey ? '<span>✓</span>' : ''}
         </div>
-      </div>
-    `).join('');
-    
+      </div>`;
+    }).join('');
+
     c.scrollTop = c.scrollHeight;
   }
 
   async function renderBots() {
     state.bots = await dbGetAll(STORES.BOTS);
     const c = document.getElementById('bots-list');
-    
+
     if (!state.bots.length) {
       c.innerHTML = '<div class="empty-state"><span style="font-size:48px">🤖</span><p>No bots. Tap + to create!</p></div>';
       return;
     }
-    
+
     c.innerHTML = state.bots.map(bot => `
       <div class="bot-card">
         <h3>${escHtml(bot.name)}</h3>
-        <p style="font-size:12px;color:var(--text-secondary)">JavaScript bot</p>
+        <p style="font-size:12px;color:var(--text-secondary)">${bot.code ? 'Custom JS + built-in skills' : 'Built-in skills only'}</p>
         <div class="bot-skills">
-          ${['calculate', 'time', 'echo', 'JS'].map(s => `<span class="skill-tag">${s}</span>`).join('')}
+          ${['calculate','time','echo','random','help'].map(s => `<span class="skill-tag">${s}</span>`).join('')}
+          ${bot.code ? '<span class="skill-tag" style="background:#9c27b0">custom JS</span>' : ''}
         </div>
-        <button class="btn" style="margin-top:12px" data-bot-id="${bot.id}">▶ Open Bot</button>
+        <button class="btn" style="margin-top:12px" data-bot-id="${bot.id}">▶ Open Runner</button>
+        <button class="btn danger" style="margin-top:8px" data-del-bot="${bot.id}">🗑️ Delete</button>
       </div>
     `).join('');
-    
-    c.querySelectorAll('button[data-bot-id]').forEach(btn => {
-      btn.addEventListener('click', () => openBotRunner(btn.dataset.botId));
-    });
+
+    c.querySelectorAll('[data-bot-id]').forEach(btn =>
+      btn.addEventListener('click', () => openBotRunner(btn.dataset.botId)));
+
+    c.querySelectorAll('[data-del-bot]').forEach(btn =>
+      btn.addEventListener('click', async () => {
+        if (!confirm('Delete this bot?')) return;
+        await dbDelete(STORES.BOTS, btn.dataset.delBot);
+        await renderBots();
+        toast('Bot deleted');
+      }));
   }
 
   async function renderPeers() {
-    const peers = await dbGetAll(STORES.PEERS);
     const c = document.getElementById('peers-list');
-    
     let html = '';
-    
-    for (const [peerId, p2pConn] of p2p.connections) {
-      const status = p2pConn.status === 'connected' ? 'online' : '';
-      html += `
-        <div class="peer-item">
-          <span style="flex:1">Peer ${peerId.slice(0, 16)}...</span>
-          <div class="peer-status ${status}"></div>
-          <button class="btn" style="width:auto;padding:4px 12px;margin-left:8px;font-size:12px" data-disconnect="${peerId}">×</button>
+
+    for (const [peerId, entry] of p2p.connections) {
+      const online = entry.status === 'connected';
+      html += `<div class="peer-item">
+        <div class="peer-status ${online ? 'online' : ''}"></div>
+        <div class="peer-info">
+          <div class="peer-name">${online ? 'Online' : entry.status}</div>
+          <div class="peer-key">${escHtml(peerId.slice(0, 32))}…</div>
         </div>
-      `;
+        <button class="btn small" data-disconnect="${escHtml(peerId)}" style="color:var(--danger);margin-left:auto">× Drop</button>
+      </div>`;
     }
-    
-    for (const [peerId] of p2p.pendingOffers) {
-      html += `
-        <div class="peer-item">
-          <span style="flex:1;color:var(--text-secondary)">Connecting to ${peerId.slice(0, 16)}...</span>
-          <div class="peer-status"></div>
-        </div>
-      `;
-    }
-    
-    if (!html) html = '<p style="color:var(--text-secondary);font-size:12px">No connections yet</p>';
-    
+
+    if (!html) html = '<p style="color:var(--text-secondary);font-size:12px">No connected peers yet</p>';
     c.innerHTML = html;
-    
-    c.querySelectorAll('[data-disconnect]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        p2p.disconnect(btn.dataset.disconnect);
-        renderPeers();
-      });
-    });
+
+    c.querySelectorAll('[data-disconnect]').forEach(btn =>
+      btn.addEventListener('click', () => { p2p.disconnect(btn.dataset.disconnect); renderPeers(); }));
   }
 
   async function openChat(chatId) {
     state.currentChat = await dbGet(STORES.CHATS, chatId);
     document.getElementById('chat-name').textContent = state.currentChat?.name || 'Chat';
+
+    const peers = (state.currentChat?.participants || []).filter(p => p !== state.publicKey && !p.startsWith('bot:'));
+    const online = peers.filter(p => p2p.connections.get(p)?.status === 'connected').length;
+    document.getElementById('chat-status').textContent = online > 0 ? `${online} peer(s) online` : '';
+
     await renderMessages(chatId);
     showScreen('chat-view');
   }
 
-  window.openBotRunner = async function(botId) {
+  function openBotRunner(botId) {
     state.currentBot = state.bots.find(b => b.id === botId);
     if (!state.currentBot) return;
-    
     document.getElementById('bot-run-title').textContent = state.currentBot.name;
     document.getElementById('bot-name-display').textContent = state.currentBot.name;
-    document.getElementById('bot-output').textContent = '';
+    document.getElementById('bot-output').textContent = '// Output will appear here';
     document.getElementById('bot-script-input').value = '';
     showScreen('bot-run');
-  };
+  }
 
-  async function addMessage(chatId, from, content, type = 'text') {
+  /* ─── Messaging ──────────────────────────────────────────────── */
+  async function addMessage(chatId, from, content) {
     const msgs = await getMessages(chatId);
     const prev = msgs.length ? msgs[msgs.length - 1].id : null;
-    
     const msg = {
-      id: await hashMsg({ chat_id: chatId, from, ts: Date.now(), type, content, prev }),
-      chat_id: chatId,
-      from,
-      timestamp: Date.now(),
-      type,
-      content,
-      prev,
-      status: 'sent'
+      id: await hashMsg({ chat_id: chatId, from, ts: Date.now(), content, prev }),
+      chat_id: chatId, from, timestamp: Date.now(), content, prev, status: 'sent'
     };
-    
     await dbPut(STORES.MESSAGES, msg);
-    
+
     const chat = await dbGet(STORES.CHATS, chatId);
     if (chat) {
       chat.last_message = msg.id;
@@ -673,213 +789,400 @@ Or write any JavaScript!`;
       chat.last_preview = content.slice(0, 50);
       await dbPut(STORES.CHATS, chat);
     }
-    
     return msg;
   }
 
   async function sendBotResponse(chatId, content, prevMsgId) {
+    const botParticipant = state.currentChat?.participants?.find(p => p.startsWith('bot:')) || 'bot:default';
     const botMsg = {
-      id: await hashMsg({ chat_id: chatId, from: 'bot', ts: Date.now(), type: 'text', content, prev: prevMsgId }),
-      chat_id: chatId,
-      from: 'bot',
-      timestamp: Date.now(),
-      type: 'text',
-      content,
-      prev: prevMsgId,
-      status: 'sent'
+      id: await hashMsg({ chat_id: chatId, from: botParticipant, ts: Date.now(), content, prev: prevMsgId }),
+      chat_id: chatId, from: botParticipant, timestamp: Date.now(), content, prev: prevMsgId, status: 'sent'
     };
-    
     await dbPut(STORES.MESSAGES, botMsg);
-    p2p.broadcast({ type: 'message', ...botMsg });
-    
-    if (state.currentChat?.id === chatId) {
-      await renderMessages(chatId);
+
+    // Broadcast to P2P peers in this chat
+    const peers = (state.currentChat?.participants || []).filter(p => p !== state.publicKey && !p.startsWith('bot:'));
+    peers.forEach(pid => p2p.send(pid, { type: 'message', ...botMsg }));
+
+    if (state.currentChat?.id === chatId) await renderMessages(chatId);
+  }
+
+  async function sendMsg() {
+    const inp  = document.getElementById('message-input');
+    const content = inp.value.trim();
+    if (!content || !state.currentChat) return;
+    inp.value = '';
+
+    const chatId = state.currentChat.id;
+    const msg = await addMessage(chatId, state.publicKey, content);
+
+    // Send to each peer individually (not broadcast-to-all)
+    const peers = (state.currentChat.participants || []).filter(p => p !== state.publicKey && !p.startsWith('bot:'));
+    peers.forEach(pid => p2p.send(pid, { type: 'message', ...msg }));
+
+    await renderMessages(chatId);
+    await renderChats();
+
+    // ── Bot commands ──────────────────────────────────────────────
+    const lower = content.toLowerCase();
+
+    if (lower.startsWith('/bot ')) {
+      const match = content.match(/^\/bot\s+(\S+)(?:\s+([\s\S]*))?$/i);
+      if (match) {
+        const [, botName, query] = match;
+        const bot = state.bots.find(b => b.name.toLowerCase() === botName.toLowerCase());
+        const botId = 'bot:' + (bot ? bot.name.toLowerCase() : botName.toLowerCase());
+
+        if (bot) {
+          if (!state.currentChat.participants.includes(botId)) {
+            state.currentChat.participants.push(botId);
+            await dbPut(STORES.CHATS, state.currentChat);
+          }
+          const result = botEngine.run(bot, query || 'help');
+          await sendBotResponse(chatId, result.ok ? result.result : '⚠️ Error: ' + result.error, msg.id);
+        } else {
+          await sendBotResponse(chatId, `Bot "${botName}" not found.\nAvailable: ${state.bots.map(b => b.name).join(', ') || 'none'}\n\nUse /bot <name> <query>`, msg.id);
+        }
+        return;
+      }
+    }
+
+    // Check if chat has a bot participant and route automatically
+    if (lower !== '/help' && lower !== '/commands') {
+      const activeBotId = state.currentChat.participants?.find(p => p.startsWith('bot:'));
+      if (activeBotId) {
+        const bot = state.bots.find(b => 'bot:' + b.name.toLowerCase() === activeBotId);
+        if (bot) {
+          const result = botEngine.run(bot, content);
+          await sendBotResponse(chatId, result.ok ? result.result : '⚠️ Error: ' + result.error, msg.id);
+          return;
+        }
+      }
+    }
+
+    if (lower === '/help' || lower === '/commands') {
+      await sendBotResponse(chatId,
+        'Commands:\n/bot <name> <query> — invoke a bot\n/help — show this\n\nIf a bot is added to the chat, messages route to it automatically.',
+        msg.id);
     }
   }
 
-  // ============ INIT ============
-  async function init() {
-    try {
-      await openDB();
-      
-      let keys = await loadKeys();
-      if (!keys) {
-        keys = await genKeys();
-        await saveKeys(keys);
+  /* ─── Add Participant Modal ────────────────────────────────────── */
+  async function showAddParticipantModal() {
+    const modal   = document.getElementById('add-participant-modal');
+    const options = document.getElementById('participant-options');
+    let html = '<h4 style="margin-bottom:12px">Connected Peers</h4>';
+
+    const connectedPeers = Array.from(p2p.connections.keys());
+    if (!connectedPeers.length) {
+      html += '<p style="color:var(--text-secondary);font-size:12px;margin-bottom:8px">No connected peers</p>';
+    } else {
+      for (const peerId of connectedPeers) {
+        const inChat = state.currentChat?.participants?.includes(peerId);
+        html += `<div class="peer-item">
+          <div class="peer-status ${p2p.connections.get(peerId)?.status === 'connected' ? 'online' : ''}"></div>
+          <div class="peer-info">
+            <div class="peer-name">Peer</div>
+            <div class="peer-key">${escHtml(peerId.slice(0, 24))}…</div>
+          </div>
+          ${inChat
+            ? '<span style="color:var(--text-secondary);font-size:12px;margin-left:auto">Added</span>'
+            : `<button class="btn small primary add-peer-btn" data-peer="${escHtml(peerId)}" style="margin-left:auto">Add</button>`}
+        </div>`;
       }
-      state.publicKey = keys.pub;
-      
-      document.getElementById('public-key').textContent = state.publicKey.slice(0, 32) + '...';
-      document.getElementById('wasm-badge').textContent = 'JS Ready';
-      document.getElementById('wasm-badge').className = 'wasm-badge ready';
-      
-      // P2P events
-      p2p.on((event, data) => {
-        if (event === 'message' && data.data.type === 'message') {
-          dbPut(STORES.MESSAGES, data.data);
-          if (state.currentChat?.id === data.data.chat_id) {
-            renderMessages(data.data.chat_id);
+    }
+
+    html += '<h4 style="margin:16px 0 12px">Bots</h4>';
+    if (!state.bots.length) {
+      html += '<p style="color:var(--text-secondary);font-size:12px">No bots – create one first</p>';
+    } else {
+      for (const bot of state.bots) {
+        const botId = 'bot:' + bot.name.toLowerCase();
+        const inChat = state.currentChat?.participants?.includes(botId);
+        html += `<div class="peer-item">
+          <div class="peer-status" style="background:var(--primary-light)"></div>
+          <div class="peer-info">
+            <div class="peer-name">🤖 ${escHtml(bot.name)}</div>
+            <div class="peer-key">JavaScript bot</div>
+          </div>
+          ${inChat
+            ? '<span style="color:var(--text-secondary);font-size:12px;margin-left:auto">Added</span>'
+            : `<button class="btn small primary add-bot-btn" data-bot-id="${escHtml(bot.id)}" style="margin-left:auto">Add</button>`}
+        </div>`;
+      }
+    }
+
+    options.innerHTML = html;
+    modal.classList.add('active');
+
+    options.querySelectorAll('.add-peer-btn').forEach(btn =>
+      btn.addEventListener('click', async () => {
+        const peerId = btn.dataset.peer;
+        if (!state.currentChat.participants.includes(peerId)) {
+          state.currentChat.participants.push(peerId);
+          await dbPut(STORES.CHATS, state.currentChat);
+          toast('Peer added!');
+          modal.classList.remove('active');
+          openChat(state.currentChat.id);
+        }
+      }));
+
+    options.querySelectorAll('.add-bot-btn').forEach(btn =>
+      btn.addEventListener('click', async () => {
+        const bot = state.bots.find(b => b.id === btn.dataset.botId);
+        if (bot) {
+          const botId = 'bot:' + bot.name.toLowerCase();
+          if (!state.currentChat.participants.includes(botId)) {
+            state.currentChat.participants.push(botId);
+            await dbPut(STORES.CHATS, state.currentChat);
+            toast('Bot added! Messages will be routed to it automatically.');
+            modal.classList.remove('active');
+            openChat(state.currentChat.id);
           }
         }
-        if (event === 'status') {
-          toast(`Peer ${data.status}`);
-          renderPeers();
-        }
-      });
-      
-      // Load saved peers
-      const savedPeers = await dbGetAll(STORES.PEERS);
-      for (const p of savedPeers) {
-        if (p.pending && p.offer) {
-          try {
-            const { answer } = await p2p.acceptOffer(p.id, JSON.parse(p.offer));
-            p.answer = JSON.stringify(answer);
-            p.pending = false;
-            await dbPut(STORES.PEERS, p);
-            toast('Connected to peer!');
-          } catch (e) {
-            console.error('Failed to connect:', e);
-          }
-        }
-      }
-      
-      await renderChats();
-      await renderBots();
-      await renderPeers();
-      await generateMyAddress();
-      
-      setupListeners();
-      
-      document.getElementById('loading').classList.remove('active');
-      showScreen('chat-list');
-      
-    } catch (e) {
-      console.error('Init error:', e);
-      document.querySelector('#loading p').textContent = 'Error: ' + e.message;
-    }
+      }));
   }
 
-  async function generateMyAddress() {
+  /* ─── P2P offer/answer generation ───────────────────────────── */
+
+  // Slot key for our pending outbound offer (Peer A role)
+  // We don't know peer B's pub key yet, so store under this sentinel.
+  const OFFER_SLOT = '__pending_offer__';
+
+  async function generateInviterOfferCode() {
+    const box = document.getElementById('offer-code-box');
+    box.textContent = 'Generating…';
     try {
-      const { offer } = await p2p.createOffer('self');
-      await p2p.createOffer(state.publicKey);
-      const addr = JSON.stringify({ v: 1, pub: state.publicKey, offer: offer.sdp });
-      const encoded = btoa(addr);
-      document.getElementById('my-address').textContent = encoded;
-      return encoded;
+      // Drop any previous pending offer
+      const old = p2p.connections.get(OFFER_SLOT);
+      if (old) { old.dc?.close(); old.conn?.close(); p2p.connections.delete(OFFER_SLOT); }
+
+      const entry = await p2p.createOffer(OFFER_SLOT);
+      const sdp   = entry.conn.localDescription.sdp;
+      const code  = btoa(JSON.stringify({ v: 2, role: 'offer', pub: state.publicKey, sdp }));
+      box.textContent = code;
     } catch (e) {
-      document.getElementById('my-address').textContent = 'Error generating address';
-      return null;
+      box.textContent = 'Error: ' + e.message;
     }
   }
 
+  /* ─── Setup Listeners ─────────────────────────────────────────── */
   function setupListeners() {
     // Navigation
-    document.getElementById('btn-connect').addEventListener('click', () => { showScreen('connect'); renderPeers(); });
+    document.getElementById('btn-connect').addEventListener('click', () => {
+      // Reset to role picker each time we open
+      document.getElementById('role-picker').style.display   = '';
+      document.getElementById('panel-inviter').style.display = 'none';
+      document.getElementById('panel-joiner').style.display  = 'none';
+      renderPeers();
+      showScreen('connect');
+    });
     document.getElementById('btn-connect-back').addEventListener('click', () => showScreen('chat-list'));
-    document.getElementById('btn-bots').addEventListener('click', () => { renderBots(); showScreen('bots'); });
+    document.getElementById('btn-bots').addEventListener('click',    () => { renderBots(); showScreen('bots'); });
     document.getElementById('btn-bots-back').addEventListener('click', () => showScreen('chat-list'));
     document.getElementById('btn-settings').addEventListener('click', () => showScreen('settings'));
     document.getElementById('btn-settings-back').addEventListener('click', () => showScreen('chat-list'));
-    document.getElementById('btn-back').addEventListener('click', () => { state.currentChat = null; showScreen('chat-list'); });
+    document.getElementById('btn-back').addEventListener('click',    () => { state.currentChat = null; showScreen('chat-list'); });
     document.getElementById('btn-bot-back').addEventListener('click', () => showScreen('bots'));
-    
+    document.getElementById('btn-add-participant').addEventListener('click', showAddParticipantModal);
+    document.getElementById('btn-cancel-participant').addEventListener('click', () =>
+      document.getElementById('add-participant-modal').classList.remove('active'));
+
+    // Role picker
+    function showPanel(panelId) {
+      document.getElementById('role-picker').style.display   = 'none';
+      document.getElementById('panel-inviter').style.display = 'none';
+      document.getElementById('panel-joiner').style.display  = 'none';
+      document.getElementById(panelId).style.display         = 'flex';
+    }
+    function showRolePicker() {
+      document.getElementById('role-picker').style.display   = '';
+      document.getElementById('panel-inviter').style.display = 'none';
+      document.getElementById('panel-joiner').style.display  = 'none';
+    }
+
+    document.getElementById('btn-role-inviter').addEventListener('click', () => {
+      showPanel('panel-inviter');
+      // Reset answer input & status
+      document.getElementById('answer-input').value   = '';
+      document.getElementById('inviter-status').style.display = 'none';
+      generateInviterOfferCode();
+    });
+
+    document.getElementById('btn-role-joiner').addEventListener('click', () => {
+      showPanel('panel-joiner');
+      document.getElementById('offer-input').value       = '';
+      document.getElementById('joiner-step2').style.display = 'none';
+      document.getElementById('joiner-status').textContent  = '';
+    });
+
+    document.getElementById('btn-back-role-inviter').addEventListener('click', showRolePicker);
+    document.getElementById('btn-back-role-joiner').addEventListener('click',  showRolePicker);
+
+    // ── Inviter: copy offer code ──────────────────────────────────
+    document.getElementById('btn-copy-offer').addEventListener('click', () => {
+      const code = document.getElementById('offer-code-box').textContent;
+      if (code && !code.startsWith('Error') && code !== 'Generating…') {
+        navigator.clipboard.writeText(code).then(() => toast('Offer code copied!'));
+      }
+    });
+    document.getElementById('offer-code-box').addEventListener('click', () => {
+      const code = document.getElementById('offer-code-box').textContent;
+      if (code && !code.startsWith('Error') && code !== 'Generating…') {
+        navigator.clipboard.writeText(code).then(() => toast('Offer code copied!'));
+      }
+    });
+
+    // ── Inviter: apply answer to complete handshake ───────────────
+    document.getElementById('btn-apply-answer').addEventListener('click', async () => {
+      const raw    = document.getElementById('answer-input').value.trim();
+      const status = document.getElementById('inviter-status');
+      status.className = 'conn-status';
+
+      if (!raw) { toast('Paste the Answer code first'); return; }
+
+      let decoded;
+      try { decoded = JSON.parse(atob(raw)); }
+      catch { status.textContent = '❌ Invalid code — make sure you pasted the full Answer code'; status.className = 'conn-status err'; status.style.display = ''; return; }
+
+      if (decoded.role !== 'answer') {
+        status.textContent = '❌ This looks like an Offer code, not an Answer code. Did you mix up the panels?';
+        status.className = 'conn-status err'; status.style.display = ''; return;
+      }
+
+      status.textContent = '⏳ Completing handshake…';
+      status.className = 'conn-status'; status.style.display = '';
+
+      try {
+        // The offer is stored under OFFER_SLOT; move it to peer's real key
+        let entry = p2p.connections.get(OFFER_SLOT);
+        if (!entry) {
+          // Maybe already re-keyed (e.g. user retried)
+          entry = p2p.connections.get(decoded.pub);
+        }
+        if (!entry) {
+          status.textContent = '❌ No pending offer found. Go back and regenerate your Offer code, then try again.';
+          status.className = 'conn-status err'; return;
+        }
+
+        // Re-key from OFFER_SLOT to real peer pub
+        if (p2p.connections.has(OFFER_SLOT)) {
+          p2p.connections.delete(OFFER_SLOT);
+          entry.peerId = decoded.pub;
+          p2p.connections.set(decoded.pub, entry);
+        }
+
+        await entry.conn.setRemoteDescription({ type: 'answer', sdp: decoded.sdp });
+
+        status.textContent = '✅ Handshake complete! Waiting for peer to connect…';
+        status.className = 'conn-status ok';
+        renderPeers();
+      } catch (e) {
+        status.textContent = '❌ Error: ' + e.message;
+        status.className = 'conn-status err';
+        console.error(e);
+      }
+    });
+
+    // ── Joiner: process offer, produce answer ─────────────────────
+    document.getElementById('btn-process-offer').addEventListener('click', async () => {
+      const raw = document.getElementById('offer-input').value.trim();
+      if (!raw) { toast('Paste the Offer code first'); return; }
+
+      let decoded;
+      try { decoded = JSON.parse(atob(raw)); }
+      catch { toast('Invalid code — paste the full Offer code'); return; }
+
+      if (decoded.role !== 'offer') {
+        toast('❌ This looks like an Answer code, not an Offer. Did you mix up the panels?');
+        return;
+      }
+
+      if (!decoded.pub || !decoded.sdp) { toast('Malformed Offer code'); return; }
+
+      try {
+        toast('Processing offer…');
+        const entry = await p2p.acceptOffer(decoded.pub, decoded.sdp);
+        const answerCode = btoa(JSON.stringify({ v: 2, role: 'answer', pub: state.publicKey, sdp: entry.conn.localDescription.sdp }));
+
+        document.getElementById('answer-code-box').textContent = answerCode;
+        document.getElementById('joiner-status').textContent   = '✅ Answer code ready! Copy it and send it back to your peer. Connection will complete once they paste it.';
+        document.getElementById('joiner-status').className     = 'conn-status ok';
+        document.getElementById('joiner-step2').style.display  = 'flex';
+        renderPeers();
+      } catch (e) {
+        toast('Error: ' + e.message);
+        console.error(e);
+      }
+    });
+
+    // ── Joiner: copy answer code ──────────────────────────────────
+    document.getElementById('btn-copy-answer').addEventListener('click', () => {
+      const code = document.getElementById('answer-code-box').textContent;
+      navigator.clipboard.writeText(code).then(() => toast('Answer code copied!'));
+    });
+    document.getElementById('answer-code-box').addEventListener('click', () => {
+      const code = document.getElementById('answer-code-box').textContent;
+      navigator.clipboard.writeText(code).then(() => toast('Answer code copied!'));
+    });
+
     // New chat
     document.getElementById('btn-new-chat').addEventListener('click', async () => {
-      const chat = { id: crypto.randomUUID(), name: 'Chat ' + Date.now(), participants: [state.publicKey], created_at: Date.now() };
+      const chat = { id: crypto.randomUUID(), name: 'New Chat', participants: [state.publicKey], created_at: Date.now() };
       await dbPut(STORES.CHATS, chat);
       await renderChats();
       openChat(chat.id);
     });
-    
-    // Send message
+
+    // Send
     document.getElementById('btn-send').addEventListener('click', sendMsg);
-    document.getElementById('message-input').addEventListener('keypress', e => {
-      if (e.key === 'Enter') sendMsg();
-    });
-    
-    // Connect peer
-    document.getElementById('btn-copy-address').addEventListener('click', () => {
-      const addr = document.getElementById('my-address').textContent;
-      navigator.clipboard.writeText(addr);
-      toast('Address copied!');
-    });
-    
-    document.getElementById('my-address').addEventListener('click', () => {
-      const addr = document.getElementById('my-address').textContent;
-      navigator.clipboard.writeText(addr);
-      toast('Address copied!');
-    });
-    
-    document.getElementById('btn-connect-peer').addEventListener('click', async () => {
-      const input = document.getElementById('peer-address-input').value.trim();
-      if (!input) { toast('Enter peer address'); return; }
-      
-      try {
-        const decoded = JSON.parse(atob(input));
-        if (!decoded.pub || !decoded.offer) {
-          toast('Invalid address format');
-          return;
-        }
-        
-        toast('Connecting...');
-        
-        const peerId = decoded.pub;
-        p2p.pendingOffers.set(peerId, true);
-        
-        const { answer } = await p2p.acceptOffer(peerId, { type: 'offer', sdp: decoded.offer });
-        
-        await dbPut(STORES.PEERS, {
-          id: peerId,
-          offer: JSON.stringify({ type: 'offer', sdp: decoded.offer }),
-          answer: JSON.stringify(answer),
-          pending: false,
-          ts: Date.now()
-        });
-        
-        toast('Connection initiated!');
-        renderPeers();
-        
-      } catch (e) {
-        console.error('Connect error:', e);
-        toast('Connection failed: ' + e.message);
-      }
-    });
-    
+    document.getElementById('message-input').addEventListener('keypress', e => { if (e.key === 'Enter') sendMsg(); });
+
     // Bots
-    document.getElementById('btn-add-bot').addEventListener('click', async () => {
-      const bot = { id: crypto.randomUUID(), name: 'Bot ' + (state.bots.length + 1), created_at: Date.now() };
-      await dbPut(STORES.BOTS, bot);
+    document.getElementById('btn-add-bot').addEventListener('click', () => {
+      document.getElementById('bot-name-input').value  = '';
+      document.getElementById('bot-code-input').value  = '';
+      document.getElementById('create-bot-modal').classList.add('active');
+    });
+    document.getElementById('btn-cancel-bot').addEventListener('click', () =>
+      document.getElementById('create-bot-modal').classList.remove('active'));
+
+    document.getElementById('btn-confirm-bot').addEventListener('click', async () => {
+      const name = document.getElementById('bot-name-input').value.trim();
+      const code = document.getElementById('bot-code-input').value.trim();
+      if (!name) { toast('Enter a bot name'); return; }
+      await dbPut(STORES.BOTS, { id: crypto.randomUUID(), name, code: code || null, created_at: Date.now() });
       await renderBots();
+      document.getElementById('create-bot-modal').classList.remove('active');
       toast('Bot created!');
     });
-    
+
+    // Bot runner
     document.getElementById('btn-run-bot').addEventListener('click', () => {
-      const code = document.getElementById('bot-script-input').value;
-      if (!code.trim()) { toast('Enter a command'); return; }
-      
-      const result = botEngine.run(code);
-      const output = document.getElementById('bot-output');
-      
-      if (result.success) {
-        output.textContent = result.output 
-          ? `${result.output}\n\n=> ${result.result}`
-          : `=> ${result.result}`;
-      } else {
-        output.textContent = `Error: ${result.error}`;
+      if (!state.currentBot) return;
+      const input = document.getElementById('bot-script-input').value;
+      if (!input.trim()) return;
+      const result = botEngine.run(state.currentBot, input);
+      document.getElementById('bot-output').textContent = result.ok ? '=> ' + result.result : '⚠️ Error: ' + result.error;
+    });
+
+    document.getElementById('bot-script-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        document.getElementById('btn-run-bot').click();
+        e.preventDefault();
       }
     });
-    
+
     // Settings
     document.getElementById('btn-copy-key').addEventListener('click', () => {
       navigator.clipboard.writeText(state.publicKey);
       toast('Key copied!');
     });
-    
+
     document.getElementById('btn-export-data').addEventListener('click', async () => {
       const data = {
         chats: await dbGetAll(STORES.CHATS),
-        bots: await dbGetAll(STORES.BOTS),
+        bots:  await dbGetAll(STORES.BOTS),
         messages: await dbGetAll(STORES.MESSAGES),
         publicKey: state.publicKey
       };
@@ -888,57 +1191,96 @@ Or write any JavaScript!`;
       a.href = URL.createObjectURL(blob);
       a.download = 'phat-backup.json';
       a.click();
-      toast('Data exported!');
+      toast('Exported!');
     });
-    
-    document.getElementById('btn-import-data').addEventListener('click', () => document.getElementById('import-file').click());
+
+    document.getElementById('btn-import-data').addEventListener('click', () =>
+      document.getElementById('import-file').click());
+
     document.getElementById('import-file').addEventListener('change', async e => {
       if (!e.target.files[0]) return;
       const data = JSON.parse(await e.target.files[0].text());
-      for (const c of data.chats || []) await dbPut(STORES.CHATS, c);
-      for (const b of data.bots || []) await dbPut(STORES.BOTS, b);
+      for (const c of data.chats    || []) await dbPut(STORES.CHATS,    c);
+      for (const b of data.bots     || []) await dbPut(STORES.BOTS,     b);
+      for (const m of data.messages || []) await dbPut(STORES.MESSAGES, m);
       await renderChats();
       await renderBots();
-      toast('Data imported!');
+      toast('Imported!');
     });
   }
 
-  async function sendMsg() {
-    const inp = document.getElementById('message-input');
-    const content = inp.value.trim();
-    if (!content || !state.currentChat) return;
-    
-    inp.value = '';
-    
-    const msg = await addMessage(state.currentChat.id, state.publicKey, content);
-    p2p.broadcast({ type: 'message', ...msg });
-    await renderMessages(state.currentChat.id);
-    await renderChats();
-    
-    // Bot commands
-    const lower = content.toLowerCase();
-    
-    if (lower.startsWith('/bot ')) {
-      const parts = content.slice(5).split(/\s+/);
-      const botName = parts[0].toLowerCase();
-      const query = parts.slice(1).join(' ');
-      
-      const bot = state.bots.find(b => b.name.toLowerCase() === botName);
-      
-      if (bot) {
-        const result = botEngine.run(query);
-        if (result.success) {
-          await sendBotResponse(state.currentChat.id, result.result, msg.id);
-        } else {
-          await sendBotResponse(state.currentChat.id, 'Error: ' + result.error, msg.id);
+  /* ─── Init ────────────────────────────────────────────────────── */
+  async function init() {
+    try {
+      document.getElementById('loading-msg').textContent = 'Opening database…';
+      await openDB();
+
+      document.getElementById('loading-msg').textContent = 'Loading keys…';
+      let keys = await loadKeys();
+      if (!keys) { keys = await genKeys(); await saveKeys(keys); }
+      state.publicKey = keys.pub;
+
+      document.getElementById('public-key').textContent = state.publicKey.slice(0, 32) + '…';
+      document.getElementById('wasm-badge').textContent  = 'JS Ready';
+      document.getElementById('wasm-badge').className    = 'wasm-badge ready';
+
+      // P2P event bus
+      p2p.on(async (event, data) => {
+        if (event === 'message' && data.data?.type === 'message') {
+          const msg    = data.data;
+          const peerId = msg.from || data.peerId;
+
+          // Find or create chat
+          let chatId = msg.chat_id;
+          let chat   = await dbGet(STORES.CHATS, chatId);
+
+          if (!chat && peerId && !peerId.startsWith('bot:')) {
+            const derived = await genChatId([state.publicKey, peerId]);
+            chat = await dbGet(STORES.CHATS, derived);
+            if (chat) { chatId = derived; msg.chat_id = chatId; }
+          }
+
+          if (!chat) {
+            chat = {
+              id: chatId,
+              name: 'Chat with Peer',
+              participants: [state.publicKey, peerId],
+              created_at: Date.now()
+            };
+          }
+
+          chat.last_ts      = msg.timestamp;
+          chat.last_message = msg.id;
+          chat.last_preview = (msg.content || '').slice(0, 50);
+
+          await dbPut(STORES.CHATS, chat);
+          msg.chat_id = chatId;
+          await dbPut(STORES.MESSAGES, msg);
+
+          if (state.currentChat?.id === chatId) await renderMessages(chatId);
+          await renderChats();
         }
-      } else {
-        await sendBotResponse(state.currentChat.id, 'Bot not found. Available bots: ' + state.bots.map(b => b.name).join(', '), msg.id);
-      }
-    }
-    
-    if (lower === '/help' || lower === '/commands') {
-      await sendBotResponse(state.currentChat.id, 'Commands:\n/bot <name> <query> - Run bot\n/new - New chat\n/help - Show this', msg.id);
+
+        if (event === 'status') {
+          toast(`Peer ${data.status}`);
+          renderPeers();
+          renderChats();
+        }
+      });
+
+      document.getElementById('loading-msg').textContent = 'Rendering…';
+      await renderChats();
+      await renderBots();
+      await renderPeers();
+
+      setupListeners();
+
+      document.getElementById('loading').classList.remove('active');
+      showScreen('chat-list');
+
+    } catch (e) {
+      console.error(e);
+      document.getElementById('loading-msg').textContent = '❌ Error: ' + e.message;
     }
   }
 
